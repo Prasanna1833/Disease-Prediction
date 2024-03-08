@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>predict | Home</title>
+  </head>
+  <style>
+    .form_div {
+      border: 1px solid black;
+      padding: 20px;
+    }
+    .contents {
+      border: 1px solid red;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 2fr));
+      gap: 20px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+    }
+    .submit_btn {
+      display: flex;
+      justify-content: center;
+    }
+    button {
+      padding: 5px;
+      color: white;
+      background-color: black;
+      min-width: 90px;
+      border-radius: 5px;
+    }
+    input {
+      max-width: 80%;
+      min-height: 30px;
+    }
+  </style>
+  <body>
+    <div class="form_div">
+      <h2>Disease Prediction</h2>
+      <form action="{% url 'result' %}" method="post">
+        {% csrf_token %}
+        <div class="contents">
+          <div class="content">
+            <label for="symptom1">Symptom 1</label>
+            <select name="symptom1" id="symptom1">
+              {% for symptom in symptoms %}
+              <option value="{{symptom}}">{{symptom}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="content">
+            <label for="symptom2">Symptom 2</label>
+            <select name="symptom2" id="symptom2">
+              {% for symptom in symptoms %}
+              <option value="{{symptom}}">{{symptom}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="content">
+            <label for="symptom3">Symptom 3</label>
+            <select name="symptom3" id="symptom3">
+              {% for symptom in symptoms %}
+              <option value="{{symptom}}">{{symptom}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="content">
+            <label for="symptom4">Symptom 4</label>
+            <select name="symptom4" id="symptom4">
+              {% for symptom in symptoms %}
+              <option value="{{symptom}}">{{symptom}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="content">
+            <label for="symptom5">Symptom 5</label>
+            <select name="symptom5" id="symptom5">
+              {% for symptom in symptoms %}
+              <option value="{{symptom}}">{{symptom}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="submit_btn">
+          <button>Submit</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
