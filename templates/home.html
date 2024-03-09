@@ -6,38 +6,72 @@
     <title>predict | Home</title>
   </head>
   <style>
-    .form_div {
-      border: 1px solid black;
-      padding: 20px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    .contents {
-      border: 1px solid red;
+
+    .form_div {
+      max-width: 900px;
+      margin: 20px auto;
+      background-color: pink;
       border-radius: 10px;
-      padding: 10px;
-      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      border: 1px solid transparent;
+    }
+    .form_div:hover {
+      box-shadow: 10px 10px 20px grey;
+      transform: scale(1.001);
+    }
+
+    .form_div h2 {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    .contents {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(500px, 2fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 20px;
+      margin-top: 20px;
     }
 
     .content {
       display: flex;
       flex-direction: column;
+      gap: 10px;
+    }
+
+    button {
+      background-color: black;
+      color: white;
+      padding: 5px;
+      min-width: 100px;
+      border-radius: 6px;
+      font-size: 20px;
+    }
+
+    button:hover {
+      background-color: white;
+      color: black;
+      cursor: pointer;
+      transform: scale(1.04);
     }
     .submit_btn {
+      margin-top: 15px;
       display: flex;
       justify-content: center;
     }
-    button {
-      padding: 5px;
-      color: white;
-      background-color: black;
-      min-width: 90px;
-      border-radius: 5px;
+    label {
+      font-size: 20px;
+      font-weight: 600;
     }
-    input {
-      max-width: 80%;
-      min-height: 30px;
+    select {
+      font-size: 15px;
     }
   </style>
   <body>
