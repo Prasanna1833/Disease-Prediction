@@ -157,3 +157,107 @@ def result(request):
 
 
     return render(request,'result.html',{'naive_bayes':naive_bayes,'decision_tree':decision_tree,'kNearest_neighbour':kNearest_neighbour,'random_forest':random_forest})
+
+# def heart(request):
+#     model = joblib.load('heart_disease_model.sav')
+#     list = []
+#     hasHeartDisease = 0
+#     if request.method == 'POST':
+#         list.append(request.POST.get('age'))
+#         list.append(request.POST.get('sex'))
+#         list.append(request.POST.get('type'))
+#         list.append(request.POST.get('bp'))
+#         list.append(request.POST.get('cholestrol'))
+#         list.append(request.POST.get('sugar'))
+#         list.append(request.POST.get('cardiograph'))
+#         list.append(request.POST.get('heart_rate'))
+#         list.append(request.POST.get('angina'))
+#         list.append(request.POST.get('depression'))
+#         list.append(request.POST.get('slope'))
+#         list.append(request.POST.get('vessels'))
+#         list.append(request.POST.get('effect'))
+
+#         hasHeartDisease = model.predict([list])[0]
+         
+#     return render(request,'heart.html',{'hasHeartDisease':hasHeartDisease})
+
+def heart(request):
+    model = joblib.load('heart_disease_model.sav')
+    features = ['age', 'sex', 'type', 'bp', 'cholestrol', 'sugar', 'cardiograph', 
+                'heart_rate', 'angina', 'depression', 'slope', 'vessels', 'effect']
+    values = []
+
+    if request.method == 'POST':
+        for feature in features:
+            value = request.POST.get(feature)
+            if value is not None:
+                values.append(float(value))  # Convert the input value to float
+            else:
+                # Handle missing values appropriately, e.g., by setting a default value
+                values.append(0.0)
+
+        hasHeartDisease = model.predict([values])[0]
+    else:
+        hasHeartDisease = 0  # Default value if the form is not submitted
+
+    return render(request, 'heart.html', {'hasHeartDisease': hasHeartDisease})
+
+def parkinson(request):
+    model = joblib.load('parkinsons_model.sav')
+    features = ['avgmdvp', 'maxadvp', 'minadvp', 'percentmdvp', 'absmdvp', 'rapmdvp', 'ppqmdvp', 
+                'jitter', 'shimmdvp', 'dbmdvp', 'Shimmer1', 'Shimmer2', 'MDVP','Shimmer3', 'NHR', 'HNR', 'RPDE', 'DFA', 'spread1','spread2','D2','PPE']
+    values = []
+
+    if request.method == 'POST':
+        for feature in features:
+            value = request.POST.get(feature)
+            if value is not None:
+                values.append(float(value))  # Convert the input value to float
+            else:
+                # Handle missing values appropriately, e.g., by setting a default value
+                values.append(0.0)
+
+        hasParkinson = model.predict([values])[0]
+    else:
+        hasParkinson = 0  # Default value if the form is not submitted
+    return render(request,'parkinson.html',{'hasParkinson':hasParkinson})
+
+# def diabetes(request):
+#     model = joblib.load('diabetes_model.sav')
+#     hasDiabetes = 0
+#     list = []
+#     if request.method == 'POST':
+        
+#         list.append(request.POST.get('pregnancy'))
+#         list.append(request.POST.get('glucose'))
+#         list.append(request.POST.get('bp'))
+#         list.append(request.POST.get('thickness'))
+#         list.append(request.POST.get('insulin'))
+#         list.append(request.POST.get('bmi'))
+#         list.append(request.POST.get('pedigree'))
+#         list.append(request.POST.get('age'))
+        
+#         hasDiabetes = model.predict([list])[0]
+
+#     return render(request,'diabetes.html',{'hasDiabetes':hasDiabetes })
+
+def diabetes(request):
+    model = joblib.load('diabetes_model.sav')
+    features = ['pregnancy', 'glucose',  'bp', 'thickness', 'insulin', 'bmi', 
+                'pedigree', 'age']
+    values = []
+
+    if request.method == 'POST':
+        for feature in features:
+            value = request.POST.get(feature)
+            if value is not None:
+                values.append(float(value))  # Convert the input value to float
+            else:
+                # Handle missing values appropriately, e.g., by setting a default value
+                values.append(0.0)
+
+        hasDiabetes = model.predict([values])[0]
+    else:
+        hasDiabetes = 0  # Default value if the form is not submitted
+
+    return render(request, 'diabetes.html', {'hasDiabetes': hasDiabetes})

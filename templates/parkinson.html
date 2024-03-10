@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="form_div">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="contents">
+          <div class="content">
+            <label for="avgmdvp">Average MDVP (Hz)</label>
+            <input type="number" step="0.0000001" name="amdvp" id="amdvp" />
+          </div>
+          <div class="content">
+            <label for="maxadvp">maximum MDVP (Hz)</label>
+            <input type="number" step="0.0000001" name="maxadvp" id="maxadvp" />
+          </div>
+          <div class="content">
+            <label for="minadvp">minimum MDVP (Hz)</label>
+            <input type="number" step="0.0000001" name="minadvp" id="minadvp" />
+          </div>
+          <div class="content">
+            <label for="percentmdvp">% MDVP</label>
+            <input
+              type="number"
+              step="0.0000001"
+              name="percentmdvp"
+              id="percentmdvp"
+            />
+          </div>
+          <div class="content">
+            <label for="absmdvp">Absolute MDVP</label>
+            <input type="number" step="0.0000001" name="absmdvp" id="absmdvp" />
+          </div>
+          <div class="content">
+            <label for="rapmdvp">RAP MDVP</label>
+            <input type="number" step="0.0000001" name="rapmdvp" id="rapmdvp" />
+          </div>
+          <div class="content">
+            <label for="ppqmdvp">PPQ MDVP</label>
+            <input type="number" step="0.0000001" name="ppqmdvp" id="ppqmdvp" />
+          </div>
+          <div class="content">
+            <label for="jitter">Jitter</label>
+            <input type="number" step="0.0000001" name="jitter" id="jitter" />
+          </div>
+          <div class="content">
+            <label for="shimmdvp">Shimmer MDVP</label>
+            <input type="number" step="0.0000001" name="shimmdvp" id="shimmdvp" />
+          </div>
+          <div class="content">
+            <label for="dbmdvp">dB MDVP</label>
+            <input type="number" step="0.0000001" name="dbmdvp" id="dbmdvp" />
+          </div>
+          <div class="content">
+            <label for="Shimmer1">Shimmer</label>
+            <input type="number" step="0.0000001" name="Shimmer1" id="Shimmer1" />
+          </div>
+          <div class="content">
+            <label for="Shimmer2">Shimmer</label>
+            <input type="number" step="0.0000001" name="Shimmer2" id="Shimmer2" />
+          </div>
+          <div class="content">
+            <label for="MDVP">MDVP</label>
+            <input type="number" step="0.0000001" name="MDVP" id="MDVP" />
+          </div>
+          <div class="content">
+            <label for="Shimmer3">Shimmer</label>
+            <input type="number" step="0.0000001" name="Shimmer3" id="Shimmer3" />
+          </div>
+          <div class="content">
+            <label for="NHR">NHR</label>
+            <input type="number" step="0.0000001" name="NHR" id="NHR" />
+          </div>
+          <div class="content">
+            <label for="HNR">HNR</label>
+            <input type="number" step="0.0000001" name="HNR" id="HNR" />
+          </div>
+          <div class="content">
+            <label for="RPDE">RPDE</label>
+            <input type="number" step="0.0000001" name="RPDE" id="RPDE" />
+          </div>
+          <div class="content">
+            <label for="DFA">DFA</label>
+            <input type="number" step="0.0000001" name="DFA" id="DFA" />
+          </div>
+          <div class="content">
+            <label for="spread1">spread1</label>
+            <input type="number" step="0.0000001" name="spread1" id="spread1" />
+          </div>
+          <div class="content">
+            <label for="spread2">spread2</label>
+            <input type="number" step="0.0000001" name="spread2" id="spread2" />
+          </div>
+          <div class="content">
+            <label for="D2">D2</label>
+            <input type="number" step="0.0000001" name="D2" id="D2" />
+          </div>
+          <div class="content">
+            <label for="PPE">PPE</label>
+            <input type="number" step="0.0000001" name="PPE" id="PPE" />
+          </div>
+          
+        <div class="btn">
+          <button>Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="answer">
+        {% if hasParkinson == 1 %}
+        <h2>has Parkinson</h2>
+        {% else %}
+        <h2>no parkinson</h2>
+        {% endif %}
+    </div>
+  </body>
+</html>

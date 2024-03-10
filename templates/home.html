@@ -11,10 +11,13 @@
       padding: 0;
       box-sizing: border-box;
     }
+    body {
+      position: relative;
+    }
 
     .form_div {
       max-width: 900px;
-      margin: 20px auto;
+      margin: 10% auto;
       background-color: pink;
       border-radius: 10px;
       display: flex;
@@ -125,6 +128,11 @@
           <button>Submit</button>
         </div>
       </form>
+    </div>
+    <div class="other_disease">
+      <button><a href="{% url 'heart' %}">heart disease</a></button>
+      <button><a href="{% url 'diabetes' %}">diabetes</a></button>
+      <button><a href="{% url 'parkinson' %}">parkinson</a></button>
     </div>
   </body>
 </html>

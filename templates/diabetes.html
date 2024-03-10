@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="form_div">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="contents">
+          <div class="content">
+            <label for="pregnancy">Number of pregnancies</label>
+            <input type="number" name="pregnancy" id="pregnancy" />
+          </div>
+          <div class="content">
+            <label for="glucose">Glucose level</label>
+            <input type="number" name="glucose" id="glucose" />
+          </div>
+          <div class="content">
+            <label for="bp">Blood Pressure value</label>
+            <input type="number" name="bp" id="bp" />
+          </div>
+          <div class="content">
+            <label for="thickness">Skin Thickness value</label>
+            <input type="number" name="thickness" id="thickness" />
+          </div>
+          <div class="content">
+            <label for="insulin">Insulin Level</label>
+            <input type="number" name="insulin" id="insulin" />
+          </div>
+          <div class="content">
+            <label for="bmi">BMI value</label>
+            <input type="number" step="0.001" name="bmi" id="bmi" />
+          </div>
+          <div class="content">
+            <label for="pedigree">Diabetes Pedigree Function value</label>
+            <input type="number" step="0.001" name="pedigree" id="pedigree" />
+          </div>
+          <div class="content">
+            <label for="age">Age of the Person</label>
+            <input type="number" name="age" id="age" />
+          </div>
+        </div>
+        <div class="btn">
+          <button>Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="answer">
+      {% if hasDiabetes == 1 %}
+      <h2>has diabetes</h2>
+      {% else %}
+      <h2>no diabetes</h2>
+      {% endif %}
+    </div>
+  </body>
+</html>

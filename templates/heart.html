@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="form_div">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="contents">
+          <div class="content">
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age" />
+          </div>
+          <div class="content">
+            <label for="sex">Sex</label>
+            <input type="number" name="sex" id="sex" />
+          </div>
+          <div class="content">
+            <label for="type">Chest Pain types</label>
+            <input type="number" name="type" id="type" />
+          </div>
+          <div class="content">
+            <label for="bp">Resting Blood Pressure</label>
+            <input type="number" name="bp" id="bp" />
+          </div>
+          <div class="content">
+            <label for="cholestrol">Serum Cholestoral in mg/dl</label>
+            <input type="number" name="cholestrol" id="cholestrol" />
+          </div>
+          <div class="content">
+            <label for="sugar">Fasting Blood Sugar > 120 mg/dl</label>
+            <input type="number" name="sugar" id="sugar" />
+          </div>
+          <div class="content">
+            <label for="cardiograph"
+              >Resting Electrocardiographic results</label
+            >
+            <input type="number" name="cardiograph" id="cardiograph" />
+          </div>
+          <div class="content">
+            <label for="heart_rate">Maximum Heart Rate achieved</label>
+            <input type="number" name="heart_rate" id="heart_rate" />
+          </div>
+          <div class="content">
+            <label for="angina">Exercise Induced Angina</label>
+            <input type="number" name="angina" id="angina" />
+          </div>
+          <div class="content">
+            <label for="depression">ST depression induced by exercise</label>
+            <input type="number" name="depression" id="depression" />
+          </div>
+          <div class="content">
+            <label for="slope">Slope of the peak exercise ST segment</label>
+            <input type="number" name="slope" id="slope" />
+          </div>
+          <div class="content">
+            <label for="vessels">Major vessels colored by flourosopy</label>
+            <input type="number" name="vessels" id="vessels" />
+          </div>
+          <div class="content">
+            <label for="effect"
+              >thal: 0 = normal; 1 = fixed defect; 2 = reversable defect</label
+            >
+            <input type="number" name="effect" id="effect" />
+          </div>
+        </div>
+        <div class="btn">
+          <button>Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="answer">
+      {% if hasHeartDisease == 1 %}
+      <h2>has heart disease</h2>
+      {% else %}
+      <h2>no heart disease</h2>
+      {% endif %}
+    </div>
+  </body>
+</html>
