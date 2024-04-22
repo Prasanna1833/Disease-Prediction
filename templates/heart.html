@@ -3,81 +3,216 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Heart</title>
   </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .other_disease {
+      flex: 0 0 20%;
+      border: 1px solid transparent;
+      background-color: rgb(245, 248, 181);
+    }
+
+    .disease {
+      width: 90%;
+      height: 50px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      border-radius: 10px;
+      margin: 5px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card a {
+      text-decoration: none;
+      font-size: 20px;
+      padding: 8px 16px;
+    }
+
+    .card p {
+      font-size: 25px;
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    .card {
+      width: 95%;
+      height: 50%;
+      margin: 50% auto;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      background-color: white;
+    }
+    .form_div {
+      flex: 0 0 80%;
+      padding: 0 50px;
+    }
+
+    /* body {
+      max-width: 75%;
+      margin: 0 auto;
+    } */
+
+    h2 {
+      display: flex;
+      justify-content: center;
+    }
+
+    .contents {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .btn {
+      display: flex;
+      justify-content: center;
+    }
+
+    button {
+      background-color: rgb(50, 108, 50);
+      border-radius: 10px;
+      min-width: 300px;
+      color: white;
+      font-size: 20px;
+      padding: 10px;
+      transition: 0.3s ease-in;
+    }
+
+    button:hover {
+      background-color: white;
+      border: 1px solid black;
+      color: black;
+      cursor: pointer;
+      transform: scale(1.01);
+      transition: 0.3s ease-out;
+    }
+    input {
+      height: 50px;
+      border-radius: 10px;
+      font-size: 20px;
+      text-align: center;
+      background-color: rgb(245, 248, 181);
+      border: 1px solid transparent;
+    }
+  </style>
   <body>
-    <div class="form_div">
-      <form action="" method="post">
-        {% csrf_token %}
-        <div class="contents">
-          <div class="content">
-            <label for="age">Age</label>
-            <input type="number" name="age" id="age" />
-          </div>
-          <div class="content">
-            <label for="sex">Sex</label>
-            <input type="number" name="sex" id="sex" />
-          </div>
-          <div class="content">
-            <label for="type">Chest Pain types</label>
-            <input type="number" name="type" id="type" />
-          </div>
-          <div class="content">
-            <label for="bp">Resting Blood Pressure</label>
-            <input type="number" name="bp" id="bp" />
-          </div>
-          <div class="content">
-            <label for="cholestrol">Serum Cholestoral in mg/dl</label>
-            <input type="number" name="cholestrol" id="cholestrol" />
-          </div>
-          <div class="content">
-            <label for="sugar">Fasting Blood Sugar > 120 mg/dl</label>
-            <input type="number" name="sugar" id="sugar" />
-          </div>
-          <div class="content">
-            <label for="cardiograph"
-              >Resting Electrocardiographic results</label
-            >
-            <input type="number" name="cardiograph" id="cardiograph" />
-          </div>
-          <div class="content">
-            <label for="heart_rate">Maximum Heart Rate achieved</label>
-            <input type="number" name="heart_rate" id="heart_rate" />
-          </div>
-          <div class="content">
-            <label for="angina">Exercise Induced Angina</label>
-            <input type="number" name="angina" id="angina" />
-          </div>
-          <div class="content">
-            <label for="depression">ST depression induced by exercise</label>
-            <input type="number" name="depression" id="depression" />
-          </div>
-          <div class="content">
-            <label for="slope">Slope of the peak exercise ST segment</label>
-            <input type="number" name="slope" id="slope" />
-          </div>
-          <div class="content">
-            <label for="vessels">Major vessels colored by flourosopy</label>
-            <input type="number" name="vessels" id="vessels" />
-          </div>
-          <div class="content">
-            <label for="effect"
-              >thal: 0 = normal; 1 = fixed defect; 2 = reversable defect</label
-            >
-            <input type="number" name="effect" id="effect" />
-          </div>
+    <div class="container">
+      <div class="other_disease">
+        <div class="card">
+          <p>Multiple Disease Prediction System</p>
+
+          <a href="{% url 'heart' %}">
+            <div class="disease" style="background-color: red">
+              Heart Disease
+            </div></a
+          >
+
+          <a href="{% url 'diabetes' %}">
+            <div class="disease" style="background-color: rgb(245, 248, 181)">
+              Diabetes
+            </div></a
+          >
+          <a href="{% url 'parkinson' %}"
+            ><div class="disease" style="background-color: rgb(245, 248, 181)">
+              Parkinson
+            </div></a
+          >
         </div>
-        <div class="btn">
-          <button>Submit</button>
+      </div>
+
+      <div class="form_div">
+        <h2>Heart disease prediction using ML</h2>
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="contents">
+            <div class="content">
+              <label for="age">Age</label>
+              <input type="number" name="age" id="age" />
+            </div>
+            <div class="content">
+              <label for="sex">Sex</label>
+              <input type="number" name="sex" id="sex" />
+            </div>
+            <div class="content">
+              <label for="type">Chest Pain types</label>
+              <input type="number" name="type" id="type" />
+            </div>
+            <div class="content">
+              <label for="bp">Resting Blood Pressure</label>
+              <input type="number" name="bp" id="bp" />
+            </div>
+            <div class="content">
+              <label for="cholestrol">Serum Cholestoral in mg/dl</label>
+              <input type="number" name="cholestrol" id="cholestrol" />
+            </div>
+            <div class="content">
+              <label for="sugar">Fasting Blood Sugar > 120 mg/dl</label>
+              <input type="number" name="sugar" id="sugar" />
+            </div>
+            <div class="content">
+              <label for="cardiograph"
+                >Resting Electrocardiographic results</label
+              >
+              <input type="number" name="cardiograph" id="cardiograph" />
+            </div>
+            <div class="content">
+              <label for="heart_rate">Maximum Heart Rate achieved</label>
+              <input type="number" name="heart_rate" id="heart_rate" />
+            </div>
+            <div class="content">
+              <label for="angina">Exercise Induced Angina</label>
+              <input type="number" name="angina" id="angina" />
+            </div>
+            <div class="content">
+              <label for="depression">ST depression induced by exercise</label>
+              <input type="number" name="depression" id="depression" />
+            </div>
+            <div class="content">
+              <label for="slope">Slope of the peak exercise ST segment</label>
+              <input type="number" name="slope" id="slope" />
+            </div>
+            <div class="content">
+              <label for="vessels">Major vessels colored by flourosopy</label>
+              <input type="number" name="vessels" id="vessels" />
+            </div>
+            <div class="content">
+              <label for="effect"
+                >thal: 0 = normal; 1 = fixed defect; 2 = reversable
+                defect</label
+              >
+              <input type="number" name="effect" id="effect" />
+            </div>
+          </div>
+          <div class="btn">
+            <button>Submit</button>
+          </div>
+        </form>
+        <div class="answer">
+          {% if hasHeartDisease == 1 %}
+          <h2>has heart disease</h2>
+          {% else %}
+          <h2>no heart disease</h2>
+          {% endif %}
         </div>
-      </form>
-    </div>
-    <div class="answer">
-      {% if hasHeartDisease == 1 %}
-      <h2>has heart disease</h2>
-      {% else %}
-      <h2>no heart disease</h2>
-      {% endif %}
+      </div>
     </div>
   </body>
 </html>

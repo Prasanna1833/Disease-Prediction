@@ -5,30 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>predict | result</title>
   </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    .algos {
+      max-width: 50%;
+      margin: 10px auto;
+      min-height: 80px;
+      border: 1px solid transparent;
+      background-color: aqua;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
   <body>
-    <p>
-      Prediction by Naive Bayes =>
-      <i
-        ><u><b>{{naive_bayes}}</b></u></i
-      >
-    </p>
-    <p>
-      Prediction by Decision Tree =>
-      <i
-        ><u><b>{{decision_tree}}</b></u></i
-      >
-    </p>
-    <p>
-      Prediction by K Nearest Neighbour =>
-      <i
-        ><u><b>{{kNearest_neighbour}}</b></u></i
-      >
-    </p>
-    <p>
-      Prediction by Random Forest =>
-      <i
-        ><u><b>{{random_forest}}</b></u></i
-      >
-    </p>
+    <div class="result">
+      <div class="algos">
+        <p>
+          Prediction by Naive Bayes =>
+          <i><b>{{naive_bayes}}</b></i>
+        </p>
+        <p>
+          Know more about
+          <a
+            href="https://en.wikipedia.org/wiki/{{naive_bayes}}"
+            target="_blank"
+            >{{naive_bayes}}</a
+          >
+          on wikipedia
+        </p>
+      </div>
+      <div class="algos">
+        <p>
+          Prediction by Decision Tree =>
+          <i><b>{{decision_tree}}</b></i>
+        </p>
+        <p>
+          Know more about
+          <a
+            href="https://en.wikipedia.org/wiki/{{decision_tree}}"
+            target="_blank"
+            >{{decision_tree}}</a
+          >
+          on wikipedia
+        </p>
+      </div>
+      <div class="algos">
+        <p>
+          Prediction by K Nearest Neighbour =>
+          <i><b>{{kNearest_neighbour}}</b></i>
+        </p>
+        <p>
+          Know more about
+          <a
+            href="https://en.wikipedia.org/wiki/{{kNearest_neighbour}}"
+            target="_blank"
+            >{{kNearest_neighbour}}</a
+          >
+          on wikipedia
+        </p>
+      </div>
+      <div class="algos">
+        <p>
+          Prediction by Random Forest =>
+          <i><b>{{random_forest}}</b></i>
+        </p>
+        <p>
+          Know more about
+          <a
+            href="https://en.wikipedia.org/wiki/{{random_forest}}"
+            target="_blank"
+            >{{random_forest}}</a
+          >
+          on wikipedia
+        </p>
+      </div>
+    </div>
   </body>
 </html>
