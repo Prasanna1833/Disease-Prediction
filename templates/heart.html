@@ -6,6 +6,10 @@
     <title>Heart</title>
   </head>
   <style>
+    :root {
+      --background: rgb(249, 116, 116);
+      --input: grey;
+    }
     * {
       margin: 0;
       padding: 0;
@@ -19,7 +23,7 @@
     .other_disease {
       flex: 0 0 20%;
       border: 1px solid transparent;
-      background-color: rgb(245, 248, 181);
+      background-color: var(--background);
     }
 
     .disease {
@@ -36,20 +40,23 @@
 
     .card a {
       text-decoration: none;
-      font-size: 20px;
+      font-size: 18px;
+      font-weight: 400;
+      color: black;
       padding: 8px 16px;
     }
 
     .card p {
-      font-size: 25px;
+      font-size: 23px;
+      font-weight: 600;
       text-align: center;
       margin-top: 25px;
     }
 
     .card {
       width: 95%;
-      height: 50%;
-      margin: 50% auto;
+      height: 350px;
+      margin: 200px auto;
       border: 1px solid transparent;
       border-radius: 10px;
       background-color: white;
@@ -120,7 +127,7 @@
           <p>Multiple Disease Prediction System</p>
 
           <a href="{% url 'heart' %}">
-            <div class="disease" style="background-color: red">
+            <div class="disease" style="background-color: red; color: white">
               Heart Disease
             </div></a
           >

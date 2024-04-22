@@ -6,6 +6,10 @@
     <title>predict | Home</title>
   </head>
   <style>
+    :root {
+      --background: rgb(253, 120, 120);
+      --input: grey;
+    }
     * {
       margin: 0;
       padding: 0;
@@ -19,7 +23,7 @@
     .other_disease {
       flex: 0 0 20%;
       border: 1px solid transparent;
-      background-color: rgb(245, 248, 181);
+      background-color: var(--background);
     }
 
     .disease {
@@ -39,20 +43,23 @@
     }
     .card a {
       text-decoration: none;
-      font-size: 20px;
+      font-size: 18px;
+      font-weight: 550;
+      color: rgb(93, 88, 88);
       padding: 8px 16px;
     }
 
     .card p {
-      font-size: 25px;
+      font-size: 23px;
+      font-weight: 600;
       text-align: center;
       margin-top: 25px;
     }
 
     .card {
       width: 95%;
-      height: 50%;
-      margin: 50% auto;
+      height: 350px;
+      margin: 200px auto;
       border: 1px solid transparent;
       border-radius: 10px;
       background-color: white;
