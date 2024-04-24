@@ -1,3 +1,4 @@
+{% extends 'base.html' %} {% block content %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,6 +16,9 @@
       padding: 0;
       box-sizing: border-box;
     }
+    body {
+      overflow: hidden;
+    }
     .container {
       display: flex;
       min-height: 100vh;
@@ -27,7 +31,7 @@
     }
 
     .disease {
-      width: 90%;
+      width: 80%;
       height: 50px;
       border: 1px solid transparent;
       cursor: pointer;
@@ -38,9 +42,6 @@
       justify-content: center;
     }
 
-    .disease.active {
-      background-color: red;
-    }
     .card a {
       text-decoration: none;
       font-size: 18px;
@@ -66,12 +67,16 @@
     }
     .form_div {
       flex: 0 0 80%;
-      padding: 0 50px;
+      padding: 10% 150px;
+      background-color: rgb(252, 211, 136);
+      margin: 0 5px;
+      overflow: hidden;
     }
 
     .form_div h2 {
       text-align: center;
-      font-size: 30px;
+      font-size: 40px;
+
       font-weight: 600;
     }
 
@@ -115,18 +120,19 @@
     label {
       font-size: 20px;
       font-weight: 600;
+      color: black;
     }
     select {
-      font-size: 15px;
-      height: 50px;
+      font-size: 18px;
+      height: 45px;
       border-radius: 10px;
-      font-size: 20px;
+      font-weight: 500px;
       text-align: center;
       background-color: rgb(245, 248, 181);
       border: 1px solid transparent;
     }
     input {
-      height: 50px;
+      height: 45px;
       border-radius: 10px;
       font-size: 20px;
       text-align: center;
@@ -160,8 +166,8 @@
         </div>
       </div>
       <div class="form_div">
-        <h2>Disease Prediction</h2>
-        <a href="{% url 'history' %}">History</a>
+        <h2>Common Disease Prediction</h2>
+
         <form action="{% url 'result' %}" method="post">
           {% csrf_token %}
           <div class="contents">
@@ -237,3 +243,4 @@
     </div>
   </body>
 </html>
+{% endblock %}

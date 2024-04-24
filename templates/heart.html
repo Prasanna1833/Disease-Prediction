@@ -1,3 +1,4 @@
+{% extends 'base.html' %} {% block content %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,6 +15,9 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+    body {
+      overflow-x: hidden;
     }
     .container {
       display: flex;
@@ -63,7 +67,9 @@
     }
     .form_div {
       flex: 0 0 80%;
-      padding: 0 50px;
+      padding: 10% 50px;
+      background-color: rgb(252, 211, 136);
+      margin-left: 5px;
     }
 
     /* body {
@@ -223,3 +229,4 @@
     </div>
   </body>
 </html>
+{% endblock %}

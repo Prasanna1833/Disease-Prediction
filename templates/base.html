@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <style>
+    #pred {
+      color: green;
+      font-size: 40px;
+    }
+    #icto {
+      color: red;
+      font-size: 40px;
+    }
+    .navbar {
+      background-color: white;
+      box-shadow: 5px 5px 100px rgb(213, 213, 213);
+      margin: 30px 140px;
+      border-radius: 50px;
+      position: fixed;
+      z-index: 100;
+      width: 80%;
+    }
+    nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      min-height: 100px;
+    }
+    .logo {
+      font-size: 35px;
+      font-weight: bold;
+      color: black;
+    }
+    .logo a {
+      text-decoration: none;
+    }
+    li {
+      display: inline-block;
+      list-style: none;
+    }
+    li a {
+      text-decoration: none;
+      font-size: 20px;
+      color: black;
+      margin-right: 80px;
+    }
+    .history_btn {
+      background-color: black;
+      color: blue;
+      padding: 10px 15px;
+      min-width: 100px;
+      border: 1px solid transparent;
+    }
+    .history_btn:hover {
+      background-color: white;
+    }
+    .history_btn a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .empty {
+      height: 80px;
+      width: 100%;
+    }
+  </style>
+  <body>
+    <div class="navbar">
+      <nav>
+        <div class="logo">
+          <p>
+            <a href="/"
+              ><span id="pred">Pred</span><span id="icto">icto</span></a
+            >
+          </p>
+        </div>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <button class="history_btn">
+            <a href="{% url 'history' %}">History</a>
+          </button>
+        </ul>
+      </nav>
+    </div>
+    <div class="empty"></div>
+    {% block content %} {% endblock %}
+  </body>
+</html>

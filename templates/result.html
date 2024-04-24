@@ -1,3 +1,4 @@
+{% extends 'base.html' %} {% block content %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,77 +15,105 @@
     .algos {
       max-width: 50%;
       margin: 10px auto;
-      min-height: 80px;
+      min-height: 100px;
       border: 1px solid transparent;
-      background-color: aqua;
+      border-radius: 10px;
+      background-color: rgb(252, 211, 136);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      line-height: 30px;
+    }
+    .disease {
+      color: rgb(239, 59, 59);
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .result {
+      padding-top: 10%;
+    }
+    .imp {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .link {
+      font-size: 18px;
+      font-weight: 200;
     }
   </style>
   <body>
     <div class="result">
       <div class="algos">
-        <p>
+        <p class="imp">
           Prediction by Naive Bayes =>
-          <i><b>{{naive_bayes}}</b></i>
+          <i
+            ><b><div class="disease">{{naive_bayes}}</div></b></i
+          >
         </p>
-        <p>
-          Know more about
+        <p class="link">
+          ( Know more about
           <a
             href="https://en.wikipedia.org/wiki/{{naive_bayes}}"
             target="_blank"
             >{{naive_bayes}}</a
           >
-          on wikipedia
+          on wikipedia)
         </p>
       </div>
       <div class="algos">
-        <p>
+        <p class="imp">
           Prediction by Decision Tree =>
-          <i><b>{{decision_tree}}</b></i>
+          <i
+            ><b><div class="disease">{{decision_tree}}</div></b></i
+          >
         </p>
-        <p>
-          Know more about
+        <p class="link">
+          ( Know more about
           <a
             href="https://en.wikipedia.org/wiki/{{decision_tree}}"
             target="_blank"
             >{{decision_tree}}</a
           >
-          on wikipedia
+          on wikipedia)
         </p>
       </div>
       <div class="algos">
-        <p>
+        <p class="imp">
           Prediction by K Nearest Neighbour =>
-          <i><b>{{kNearest_neighbour}}</b></i>
+          <i
+            ><b><div class="disease">{{kNearest_neighbour}}</div></b></i
+          >
         </p>
-        <p>
-          Know more about
+        <p class="link">
+          ( Know more about
           <a
             href="https://en.wikipedia.org/wiki/{{kNearest_neighbour}}"
             target="_blank"
             >{{kNearest_neighbour}}</a
           >
-          on wikipedia
+          on wikipedia )
         </p>
       </div>
       <div class="algos">
-        <p>
+        <p class="imp">
           Prediction by Random Forest =>
-          <i><b>{{random_forest}}</b></i>
+          <i
+            ><b><div class="disease">{{random_forest}}</div></b></i
+          >
         </p>
-        <p>
-          Know more about
+        <p class="link">
+          ( Know more about
           <a
             href="https://en.wikipedia.org/wiki/{{random_forest}}"
             target="_blank"
             >{{random_forest}}</a
           >
-          on wikipedia
+          on wikipedia )
         </p>
       </div>
     </div>
   </body>
 </html>
+{% endblock %}

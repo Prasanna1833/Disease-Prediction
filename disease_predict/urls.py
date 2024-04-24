@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from predict.views import home,parkinson,heart,diabetes,printHistory,result
+from predict.views import home,parkinson,heart,diabetes,printHistory,result,not_found
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +26,7 @@ urlpatterns = [
     path('heart/',heart,name='heart'),
     path('diabetes/',diabetes,name='diabetes'),
     path('history/',printHistory,name='history'),
-    
+    path('<str:unknown_path>',not_found,name='error')
 
 
 ]

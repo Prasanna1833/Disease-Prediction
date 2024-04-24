@@ -201,3 +201,9 @@ def diabetes(request):
         hasDiabetes = 0  # Default value if the form is not submitted
 
     return render(request, 'diabetes.html', {'hasDiabetes': hasDiabetes})
+
+# def error(request,unknown_path):
+#     return render(request,'error.html',{'path':unknown_path},status=404)
+
+def not_found(request,unknown_path):
+    return render(request,'error.html',{'path':unknown_path},status=404)
