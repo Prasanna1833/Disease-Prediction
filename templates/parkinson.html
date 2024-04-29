@@ -67,7 +67,7 @@
     }
     .form_div {
       flex: 0 0 80%;
-      padding: 10% 50px;
+      padding: 100px 50px;
       background-color: rgb(252, 211, 136);
       margin-left: 5px;
     }
@@ -123,7 +123,39 @@
       font-size: 20px;
       text-align: center;
       background-color: rgb(245, 248, 181);
-      border: 1px solid transparent;
+      border: 1px solid rgb(169, 169, 169);
+    }
+
+    .error {
+      background-color: rgb(250, 170, 170);
+      color: red;
+      font-weight: 600;
+      border-radius: 5px;
+      padding: 10px 20px;
+      width: 50%;
+      margin-top: 20px;
+    }
+    .positive_answer {
+      width: 50%;
+      margin: 20px auto;
+      border: 1px solid red;
+      border-radius: 5px;
+      padding: 20px 20px;
+      background-color: rgb(250, 179, 179);
+      color: rgb(194, 29, 29);
+    }
+    .negative_answer {
+      width: 50%;
+      margin: 20px auto;
+      border: 1px solid green;
+      border-radius: 5px;
+      padding: 20px 20px;
+      background-color: rgb(145, 201, 145);
+      color: rgb(11, 70, 11);
+    }
+    .positive_answer,
+    .negative_answer {
+      display: none;
     }
   </style>
   <body>
@@ -153,15 +185,20 @@
 
       <div class="form_div">
         <h2>Parkinson's disease prediction using ML</h2>
+        {% if error %}
+        <div class="error">
+          <p>All the fields are required, Enter all the fields</p>
+        </div>
+        {% endif %}
         <form action="" method="post">
           {% csrf_token %}
           <div class="contents">
             <div class="content">
-              <label for="avgmdvp">Average MDVP (Hz)</label>
+              <label for="avgmdvp">Average MDVP (Hz) *</label>
               <input type="number" step="0.0000001" name="amdvp" id="amdvp" />
             </div>
             <div class="content">
-              <label for="maxadvp">maximum MDVP (Hz)</label>
+              <label for="maxadvp">maximum MDVP (Hz) *</label>
               <input
                 type="number"
                 step="0.0000001"
@@ -170,7 +207,7 @@
               />
             </div>
             <div class="content">
-              <label for="minadvp">minimum MDVP (Hz)</label>
+              <label for="minadvp">minimum MDVP (Hz) *</label>
               <input
                 type="number"
                 step="0.0000001"
@@ -179,7 +216,7 @@
               />
             </div>
             <div class="content">
-              <label for="percentmdvp">% MDVP</label>
+              <label for="percentmdvp">% MDVP *</label>
               <input
                 type="number"
                 step="0.0000001"
@@ -188,7 +225,7 @@
               />
             </div>
             <div class="content">
-              <label for="absmdvp">Absolute MDVP</label>
+              <label for="absmdvp">Absolute MDVP *</label>
               <input
                 type="number"
                 step="0.0000001"
@@ -197,7 +234,7 @@
               />
             </div>
             <div class="content">
-              <label for="rapmdvp">RAP MDVP</label>
+              <label for="rapmdvp">RAP MDVP *</label>
               <input
                 type="number"
                 step="0.0000001"
@@ -206,7 +243,7 @@
               />
             </div>
             <div class="content">
-              <label for="ppqmdvp">PPQ MDVP</label>
+              <label for="ppqmdvp">PPQ MDVP *</label>
               <input
                 type="number"
                 step="0.0000001"
@@ -215,11 +252,11 @@
               />
             </div>
             <div class="content">
-              <label for="jitter">Jitter</label>
+              <label for="jitter">Jitter *</label>
               <input type="number" step="0.0000001" name="jitter" id="jitter" />
             </div>
             <div class="content">
-              <label for="shimmdvp">Shimmer MDVP</label>
+              <label for="shimmdvp">Shimmer MDVP *</label>
               <input
                 type="number"
                 step="0.0000001"
@@ -228,11 +265,11 @@
               />
             </div>
             <div class="content">
-              <label for="dbmdvp">dB MDVP</label>
+              <label for="dbmdvp">dB MDVP *</label>
               <input type="number" step="0.0000001" name="dbmdvp" id="dbmdvp" />
             </div>
             <div class="content">
-              <label for="Shimmer1">Shimmer</label>
+              <label for="Shimmer1">Shimmer *</label>
               <input
                 type="number"
                 step="0.0000001"
@@ -241,7 +278,7 @@
               />
             </div>
             <div class="content">
-              <label for="Shimmer2">Shimmer</label>
+              <label for="Shimmer2">Shimmer *</label>
               <input
                 type="number"
                 step="0.0000001"
@@ -250,11 +287,11 @@
               />
             </div>
             <div class="content">
-              <label for="MDVP">MDVP</label>
+              <label for="MDVP">MDVP *</label>
               <input type="number" step="0.0000001" name="MDVP" id="MDVP" />
             </div>
             <div class="content">
-              <label for="Shimmer3">Shimmer</label>
+              <label for="Shimmer3">Shimmer *</label>
               <input
                 type="number"
                 step="0.0000001"
@@ -263,23 +300,23 @@
               />
             </div>
             <div class="content">
-              <label for="NHR">NHR</label>
+              <label for="NHR">NHR *</label>
               <input type="number" step="0.0000001" name="NHR" id="NHR" />
             </div>
             <div class="content">
-              <label for="HNR">HNR</label>
+              <label for="HNR">HNR *</label>
               <input type="number" step="0.0000001" name="HNR" id="HNR" />
             </div>
             <div class="content">
-              <label for="RPDE">RPDE</label>
+              <label for="RPDE">RPDE *</label>
               <input type="number" step="0.0000001" name="RPDE" id="RPDE" />
             </div>
             <div class="content">
-              <label for="DFA">DFA</label>
+              <label for="DFA">DFA *</label>
               <input type="number" step="0.0000001" name="DFA" id="DFA" />
             </div>
             <div class="content">
-              <label for="spread1">spread1</label>
+              <label for="spread1">spread1 *</label>
               <input
                 type="number"
                 step="0.0000001"
@@ -288,7 +325,7 @@
               />
             </div>
             <div class="content">
-              <label for="spread2">spread2</label>
+              <label for="spread2">spread2 *</label>
               <input
                 type="number"
                 step="0.0000001"
@@ -297,11 +334,11 @@
               />
             </div>
             <div class="content">
-              <label for="D2">D2</label>
+              <label for="D2">D2 *</label>
               <input type="number" step="0.0000001" name="D2" id="D2" />
             </div>
             <div class="content">
-              <label for="PPE">PPE</label>
+              <label for="PPE">PPE *</label>
               <input type="number" step="0.0000001" name="PPE" id="PPE" />
             </div>
           </div>
@@ -309,13 +346,24 @@
             <button>Submit</button>
           </div>
         </form>
-        <div class="answer">
-          {% if hasParkinson == 1 %}
-          <h2>has Parkinson</h2>
-          {% else %}
-          <h2>no parkinson</h2>
-          {% endif %}
+        {% if hasParkinson == 1 and prev %}
+        <div class="positive_answer" style="display: block">
+          <h2>Oops!! You may be having the Parkinson's disease</h2>
+          <p>
+            ( Know more about
+            <a
+              href="https://en.wikipedia.org/wiki/Parkinson%27s_disease"
+              target="_blank"
+              >Parkinsons's disease</a
+            >
+            on Wikipedia )
+          </p>
         </div>
+        {% elif hasParkinson == 0 and prev %}
+        <div class="negative_answer" style="display: block">
+          <h2>You are safe!! you may not be having Heart Disease</h2>
+        </div>
+        {% endif %}
       </div>
     </div>
   </body>

@@ -73,6 +73,27 @@ def result(request):
 
 
     if request.method == 'POST':
+        name=request.POST['name']
+        age=request.POST['age']
+        symptom1=request.POST.get('symptom1')
+        symptom2=request.POST.get('symptom2')
+
+        errors=[]
+        if not name:
+            errors.append("Name is the required field, Enter your name.")
+
+        if not age:
+            errors.append("Age is the required field, Enter your age.")
+
+        if not symptom1:
+            errors.append("Symptom 1 is necessary, Enter the first symptom.")
+
+        if not symptom2:
+            errors.append("At least 2 symptoms are necessary.")
+        
+        if errors:
+            return render(request,'result.html',{'errors':errors})
+
         selected_symptoms = []
         selected_symptoms.append(request.POST.get('symptom1'))
         selected_symptoms.append(request.POST.get('symptom2'))
@@ -88,8 +109,7 @@ def result(request):
         random_forest= diseases[rf.predict([l2])[0]]
         
         diseases = {"naive_bayes":naive_bayes,"decision_tree":decision_tree,"kNearest_neighbour":kNearest_neighbour,"random_forest":random_forest}
-        name=request.POST['name']
-        age=request.POST['age']
+        
         symptoms = selected_symptoms
         predicted_disease = diseases
         
@@ -126,8 +146,28 @@ def heart(request):
     features = ['age', 'sex', 'type', 'bp', 'cholestrol', 'sugar', 'cardiograph', 
                 'heart_rate', 'angina', 'depression', 'slope', 'vessels', 'effect']
     values = []
-
+    prev = False
     if request.method == 'POST':
+        prev = not prev
+        age=request.POST['age']
+        sex=request.POST['sex'] 
+        typpe=request.POST.get('type')
+        bp=request.POST.get('bp')
+        cholestrol=request.POST.get('cholestrol')
+        sugar=request.POST.get('sugar')
+        cardiograph=request.POST.get('cardiograph')
+        heart_rate=request.POST.get('heart_rate')
+        angina=request.POST.get('angina')
+        depression=request.POST.get('depression')
+        slope=request.POST.get('slope')
+        vessels=request.POST.get('vessels')
+        effect=request.POST.get('effect')
+
+        error = False
+        if not age or not sex or  not typpe or not bp or not cholestrol or not sugar or  not cardiograph or not heart_rate or  not angina or not depression or not slope or not vessels or  not effect:
+            error = True
+            return render(request, 'heart.html', {'error': error})
+
         for feature in features:
             value = request.POST.get(feature)
             if value is not None:
@@ -140,15 +180,44 @@ def heart(request):
     else:
         hasHeartDisease = 0  # Default value if the form is not submitted
 
-    return render(request, 'heart.html', {'hasHeartDisease': hasHeartDisease})
+    return render(request, 'heart.html', {'hasHeartDisease': hasHeartDisease,'prev':prev})
 
 def parkinson(request):
     model = joblib.load('parkinsons_model.sav')
     features = ['avgmdvp', 'maxadvp', 'minadvp', 'percentmdvp', 'absmdvp', 'rapmdvp', 'ppqmdvp', 
                 'jitter', 'shimmdvp', 'dbmdvp', 'Shimmer1', 'Shimmer2', 'MDVP','Shimmer3', 'NHR', 'HNR', 'RPDE', 'DFA', 'spread1','spread2','D2','PPE']
     values = []
-
+    prev = False
     if request.method == 'POST':
+        prev = not prev
+        avgmdvp=request.POST.get('avgmdvp')
+        maxadvp=request.POST.get('maxadvp') 
+        minadvp=request.POST.get('minadvp')
+        percentmdvp=request.POST.get('percentmdvp')
+        absmdvp=request.POST.get('absmdvp')
+        rapmdvp=request.POST.get('rapmdvp')
+        ppqmdvp=request.POST.get('ppqmdvp')
+        jitter=request.POST.get('jitter')
+        shimmdvp=request.POST.get('shimmdvp')
+        dbmdvp=request.POST.get('dbmdvp')
+        Shimmer1=request.POST.get('Shimmer1')
+        Shimmer2=request.POST.get('Shimmer2')
+        MDVP=request.POST.get('MDVP')
+        Shimmer3=request.POST.get('Shimmer3')
+        NHR=request.POST.get('NHR')
+        HNR=request.POST.get('HNR')
+        RPDE=request.POST.get('RPDE')
+        DFA=request.POST.get('DFA')
+        spread1=request.POST.get('spread1')
+        spread2=request.POST.get('spread2')
+        D2=request.POST.get('D2')
+        PPE=request.POST.get('PPE')
+       
+
+        error = False
+        if not avgmdvp or not maxadvp or  not minadvp or not percentmdvp or not absmdvp or not rapmdvp or  not ppqmdvp or not jitter or  not shimmdvp or not dbmdvp or not Shimmer1 or not Shimmer2 or  not MDVP or not Shimmer3 or not NHR or not HNR or  not RPDE or not DFA or  not spread1 or not spread2 or not D2 or not PPE:
+            error = True
+            return render(request, 'parkinson.html', {'error': error})
         for feature in features:
             value = request.POST.get(feature)
             if value is not None:
@@ -160,7 +229,7 @@ def parkinson(request):
         hasParkinson = model.predict([values])[0]
     else:
         hasParkinson = 0  # Default value if the form is not submitted
-    return render(request,'parkinson.html',{'hasParkinson':hasParkinson})
+    return render(request,'parkinson.html',{'hasParkinson':hasParkinson,'prev':prev})
 
 # def diabetes(request):
 #     model = joblib.load('diabetes_model.sav')
@@ -186,8 +255,22 @@ def diabetes(request):
     features = ['pregnancy', 'glucose',  'bp', 'thickness', 'insulin', 'bmi', 
                 'pedigree', 'age']
     values = []
-
+    prev = False
     if request.method == 'POST':
+        prev = not prev
+        pregnancy=request.POST.get('pregnancy')
+        glucose=request.POST.get('glucose') 
+        bp=request.POST.get('bp')
+        thickness=request.POST.get('thickness')
+        insulin=request.POST.get('insulin')
+        bmi=request.POST.get('bmi')
+        pedigree=request.POST.get('pedigree')
+        age=request.POST.get('age')
+        
+        error = False
+        if not pregnancy or not glucose or  not bp or not thickness or not insulin or not bmi or  not pedigree or not age:
+            error = True
+            return render(request, 'diabetes.html', {'error': error})
         for feature in features:
             value = request.POST.get(feature)
             if value is not None:
@@ -197,13 +280,14 @@ def diabetes(request):
                 values.append(0.0)
 
         hasDiabetes = model.predict([values])[0]
+        
     else:
         hasDiabetes = 0  # Default value if the form is not submitted
 
-    return render(request, 'diabetes.html', {'hasDiabetes': hasDiabetes})
+    return render(request, 'diabetes.html', {'hasDiabetes': hasDiabetes,'prev':prev})
 
 # def error(request,unknown_path):
 #     return render(request,'error.html',{'path':unknown_path},status=404)
 
 def not_found(request,unknown_path):
-    return render(request,'error.html',{'path':unknown_path},status=404)
+    return render(request,'error.html',{'path':unknown_path },status=404)

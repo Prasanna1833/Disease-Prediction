@@ -67,7 +67,7 @@
     }
     .form_div {
       flex: 0 0 80%;
-      padding: 10% 50px;
+      padding: 100px 50px;
       background-color: rgb(252, 211, 136);
       margin-left: 5px;
     }
@@ -77,7 +77,7 @@
       margin: 0 auto;
     } */
 
-    h2 {
+    .form_div h2 {
       display: flex;
       justify-content: center;
     }
@@ -123,7 +123,39 @@
       font-size: 20px;
       text-align: center;
       background-color: rgb(245, 248, 181);
-      border: 1px solid transparent;
+      border: 1px solid rgb(169, 169, 169);
+    }
+
+    .error {
+      background-color: rgb(250, 170, 170);
+      color: red;
+      font-weight: 600;
+      border-radius: 5px;
+      padding: 10px 20px;
+      width: 50%;
+      margin-top: 20px;
+    }
+    .positive_answer {
+      width: 50%;
+      margin: 20px auto;
+      border: 1px solid red;
+      border-radius: 5px;
+      padding: 20px 20px;
+      background-color: rgb(250, 179, 179);
+      color: rgb(194, 29, 29);
+    }
+    .negative_answer {
+      width: 50%;
+      margin: 20px auto;
+      border: 1px solid green;
+      border-radius: 5px;
+      padding: 20px 20px;
+      background-color: rgb(145, 201, 145);
+      color: rgb(11, 70, 11);
+    }
+    .positive_answer,
+    .negative_answer {
+      display: none;
     }
   </style>
   <body>
@@ -153,63 +185,70 @@
 
       <div class="form_div">
         <h2>Heart disease prediction using ML</h2>
+        {% if error %}
+        <div class="error">
+          <p>All the fields are required, Enter all the fields</p>
+        </div>
+        {% endif %}
         <form action="" method="post">
           {% csrf_token %}
           <div class="contents">
             <div class="content">
-              <label for="age">Age</label>
+              <label for="age">Age *</label>
               <input type="number" name="age" id="age" />
             </div>
             <div class="content">
-              <label for="sex">Sex</label>
+              <label for="sex">Sex *</label>
               <input type="number" name="sex" id="sex" />
             </div>
             <div class="content">
-              <label for="type">Chest Pain types</label>
+              <label for="type">Chest Pain types *</label>
               <input type="number" name="type" id="type" />
             </div>
             <div class="content">
-              <label for="bp">Resting Blood Pressure</label>
+              <label for="bp">Resting Blood Pressure *</label>
               <input type="number" name="bp" id="bp" />
             </div>
             <div class="content">
-              <label for="cholestrol">Serum Cholestoral in mg/dl</label>
+              <label for="cholestrol">Serum Cholestoral in mg/dl *</label>
               <input type="number" name="cholestrol" id="cholestrol" />
             </div>
             <div class="content">
-              <label for="sugar">Fasting Blood Sugar > 120 mg/dl</label>
+              <label for="sugar">Fasting Blood Sugar > 120 mg/dl *</label>
               <input type="number" name="sugar" id="sugar" />
             </div>
             <div class="content">
               <label for="cardiograph"
-                >Resting Electrocardiographic results</label
+                >Resting Electrocardiographic results *</label
               >
               <input type="number" name="cardiograph" id="cardiograph" />
             </div>
             <div class="content">
-              <label for="heart_rate">Maximum Heart Rate achieved</label>
+              <label for="heart_rate">Maximum Heart Rate achieved *</label>
               <input type="number" name="heart_rate" id="heart_rate" />
             </div>
             <div class="content">
-              <label for="angina">Exercise Induced Angina</label>
+              <label for="angina">Exercise Induced Angina *</label>
               <input type="number" name="angina" id="angina" />
             </div>
             <div class="content">
-              <label for="depression">ST depression induced by exercise</label>
+              <label for="depression"
+                >ST depression induced by exercise *</label
+              >
               <input type="number" name="depression" id="depression" />
             </div>
             <div class="content">
-              <label for="slope">Slope of the peak exercise ST segment</label>
+              <label for="slope">Slope of the peak exercise ST segment *</label>
               <input type="number" name="slope" id="slope" />
             </div>
             <div class="content">
-              <label for="vessels">Major vessels colored by flourosopy</label>
+              <label for="vessels">Major vessels colored by flourosopy *</label>
               <input type="number" name="vessels" id="vessels" />
             </div>
             <div class="content">
               <label for="effect"
-                >thal: 0 = normal; 1 = fixed defect; 2 = reversable
-                defect</label
+                >thal: 0 = normal; 1 = fixed defect; 2 = reversable defect
+                *</label
               >
               <input type="number" name="effect" id="effect" />
             </div>
@@ -218,13 +257,24 @@
             <button>Submit</button>
           </div>
         </form>
-        <div class="answer">
-          {% if hasHeartDisease == 1 %}
-          <h2>has heart disease</h2>
-          {% else %}
-          <h2>no heart disease</h2>
-          {% endif %}
+        {% if hasHeartDisease == 1 and prev %}
+        <div class="positive_answer" style="display: block">
+          <h2>Oops!! You may be having the Heart Disease</h2>
+          <p>
+            ( Know more about
+            <a
+              href="https://en.wikipedia.org/wiki/Cardiovascular_disease"
+              target="_blank"
+              >Heart disease</a
+            >
+            on Wikipedia )
+          </p>
         </div>
+        {% elif hasHeartDisease == 0 and prev %}
+        <div class="negative_answer" style="display: block">
+          <h2>You are safe!! you may not be having Heart Disease</h2>
+        </div>
+        {% endif %}
       </div>
     </div>
   </body>

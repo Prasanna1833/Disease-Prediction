@@ -12,6 +12,29 @@
       margin: 0;
       box-sizing: border-box;
     }
+
+    .result {
+      padding-top: 100px;
+    }
+    .errors {
+      max-width: 50%;
+      border-radius: 10px;
+      background-color: rgb(252, 207, 207);
+      color: red;
+      padding: 20px 30px;
+      margin: 0 auto;
+      line-height: 25px;
+      border: 1px solid red;
+    }
+    #error_heading {
+      font-size: 19px;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+    .items {
+      font-size: 17px;
+      letter-spacing: 1px;
+    }
     .algos {
       max-width: 50%;
       margin: 10px auto;
@@ -30,9 +53,7 @@
       font-size: 25px;
       font-weight: bold;
     }
-    .result {
-      padding-top: 10%;
-    }
+
     .imp {
       font-size: 20px;
       font-weight: 600;
@@ -45,6 +66,17 @@
   </style>
   <body>
     <div class="result">
+      {% if errors%}
+      <div class="errors">
+        <p id="error_heading">Correct these errors :</p>
+        <ul>
+          {% for error in errors%}
+          <li class="items">{{error}}</li>
+
+          {% endfor %}
+        </ul>
+      </div>
+      {% else %}
       <div class="algos">
         <p class="imp">
           Prediction by Naive Bayes =>
@@ -113,6 +145,7 @@
           on wikipedia )
         </p>
       </div>
+      {% endif %}
     </div>
   </body>
 </html>

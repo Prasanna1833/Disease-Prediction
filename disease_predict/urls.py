@@ -26,7 +26,7 @@ urlpatterns = [
     path('heart/',heart,name='heart'),
     path('diabetes/',diabetes,name='diabetes'),
     path('history/',printHistory,name='history'),
-    path('<str:unknown_path>',not_found,name='error')
+    path('<path:unknown_path>',not_found,name='error')
 
 
 ]
