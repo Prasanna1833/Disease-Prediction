@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .developers {
+      margin: 6% auto;
+      padding: 25px 0;
+      max-width: 50%;
+      border: 1px solid transparent;
+      background-color: white;
+      color: black;
+      box-shadow: 5px 5px 100px grey;
+    }
+    .usn {
+      font-size: 16px;
+    }
+    .developer {
+      width: 80%;
+      margin: 10px auto;
+      height: 80px;
+      padding: 10px 15px;
+      border: 1px solid transparent;
+      background-color: rgb(250, 245, 245);
+      color: rgb(189, 25, 25);
+      box-shadow: 1px 1px 2px grey;
+      text-align: center;
+      letter-spacing: 1px;
+      line-height: 25px;
+    }
+
+    .developer:hover {
+      cursor: pointer;
+      box-shadow: 1px 1px 5px grey;
+      border-radius: 5px;
+    }
+  </style>
+  <body>
+    <div class="developers">
+      <h3 style="text-align: center; color: rgb(240, 36, 36)">
+        BROUGHT TO YOU BY:
+      </h3>
+      <div class="developer">
+        <h3>PUSHKARAN H S <span class="usn">(1MV20IS041)</span></h3>
+        <p>(DEPARTMENT OF ISE)</p>
+      </div>
+      <div class="developer">
+        <h3>PREETHI A <span class="usn">(1MV20IS040)</span></h3>
+        <p>(DEPARTMENT OF ISE)</p>
+      </div>
+      <div class="developer">
+        <h3>NARESH MADHAV <span class="usn">(1MV20IS025)</span></h3>
+        <p>(DEPARTMENT OF ISE)</p>
+      </div>
+      <div class="developer">
+        <h3>PRASANNA M HEGDE <span class="usn">(1MV20IS037)</span></h3>
+        <p>(DEPARTMENT OF ISE)</p>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

@@ -66,6 +66,11 @@
       height: 80px;
       width: 100%;
     }
+    .theme {
+      background-color: black;
+      color: white;
+      width: 30px;
+    }
   </style>
   <body>
     <div class="navbar">
@@ -78,7 +83,8 @@
           </p>
         </div>
         <ul>
-          <li class="list"><a href="#">About Us</a></li>
+          <li class="list"><a href="{% url 'about' %}">About Us</a></li>
+
           <button class="history_btn">
             <a href="{% url 'history' %}">History</a>
           </button>

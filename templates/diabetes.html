@@ -78,9 +78,10 @@
       margin-left: 5px;
     }
 
-    h2 {
+    .form_div h2 {
       display: flex;
       justify-content: center;
+      font-size: 21px;
     }
 
     .contents {
@@ -158,6 +159,17 @@
     .negative_answer {
       display: none;
     }
+    select {
+      font-size: 16px;
+      height: 45px;
+      border-radius: 5px;
+      font-weight: 500px;
+      letter-spacing: 1px;
+      padding-left: 10px;
+      background-color: rgb(245, 248, 181);
+      color: rgb(95, 95, 95);
+      border: 1px solid transparent;
+    }
   </style>
   <body>
     <div class="container">
@@ -171,21 +183,29 @@
             </div></a
           >
 
-          <a href="{% url 'diabetes' %}">
-            <div class="disease" style="background-color: red; color: white">
-              Diabetes
-            </div></a
-          >
           <a href="{% url 'parkinson' %}"
             ><div class="disease" style="background-color: rgb(245, 248, 181)">
               Parkinson
             </div></a
           >
+          <div class="disease" style="background-color: red; color: white">
+            <select
+              name="diabetes_types"
+              id="diabetes_types"
+              style="background-color: red; color: white"
+            >
+              <option value="" disabled>Select the Diabetes type</option>
+              <option value="diabetes" selected>Diabetes</option>
+              <option value="cardio">Diabetes Cardiomyopathy</option>
+              <option value="gestational">Gestational Diabetes</option>
+              <option value="nephropathy">Diabetic Nephropathy</option>
+            </select>
+          </div>
         </div>
       </div>
 
       <div class="form_div">
-        <h2>Diabetes prediction using ML</h2>
+        <h2>DIABETES PREDICTION USING ML</h2>
         {% if error %}
         <div class="error">
           <p>All the fields are required, Enter all the fields</p>
@@ -249,6 +269,27 @@
         {% endif %}
       </div>
     </div>
+    <script>
+      document
+        .getElementById("diabetes_types")
+        .addEventListener("change", function () {
+          var selected = this.value;
+          switch (selected) {
+            case "diabetes":
+              window.location.href = "/diabetes/";
+              break;
+            case "cardio":
+              window.location.href = "/diabetes/cardio";
+              break;
+            case "nephropathy":
+              window.location.href = "/diabetes/nephropathy";
+              break;
+            case "gestational":
+              window.location.href = "/diabetes/gestational";
+              break;
+          }
+        });
+    </script>
   </body>
 </html>
 {% endblock %}

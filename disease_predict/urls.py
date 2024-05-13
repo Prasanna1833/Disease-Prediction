@@ -16,15 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from predict.views import home,parkinson,heart,diabetes,printHistory,result,not_found
+from predict.views import home,parkinson,heart,diabetes,printHistory,result,not_found,about,nephropathy,gestational,cardio
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home,name='home'),
     path('result/',result,name='result'),
+    path('about/',about,name='about'),
     path('parkinson/',parkinson,name='parkinson'),
     path('heart/',heart,name='heart'),
     path('diabetes/',diabetes,name='diabetes'),
+    path('diabetes/cardio',cardio,name='cardio'),
+    path('diabetes/gestational',gestational,name='gestational'),
+    path('diabetes/nephropathy',nephropathy,name='nephropathy'),
     path('history/',printHistory,name='history'),
     path('<path:unknown_path>',not_found,name='error')
 

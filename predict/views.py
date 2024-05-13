@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import joblib
+import pickle
 from .models import History
 
 def printHistory(request):
@@ -8,6 +9,8 @@ def printHistory(request):
 
 
 def home(request):
+
+
     symptoms = ['itching', 'skin_rash', 'nodal_skin_eruptions', 'continuous_sneezing', 'shivering', 'chills', 'joint_pain',
             'stomach_pain', 'acidity', 'ulcers_on_tongue', 'muscle_wasting', 'vomiting', 'burning_micturition', 
             'spotting_urination', 'fatigue', 'weight_gain', 'anxiety', 'cold_hands_and_feets', 'mood_swings', 
@@ -71,8 +74,10 @@ def result(request):
     knn = joblib.load('kNearest_model.sav')
     rf = joblib.load('random_forest_model.sav')
 
-
+   
+    
     if request.method == 'POST':
+       
         name=request.POST['name']
         age=request.POST['age']
         symptom1=request.POST.get('symptom1')
@@ -289,5 +294,133 @@ def diabetes(request):
 # def error(request,unknown_path):
 #     return render(request,'error.html',{'path':unknown_path},status=404)
 
+def cardio(request):
+    model = joblib.load('cardio.pkl')
+    features = ['gender', 'smoking', 'glucose', 'age', 'bmi', 'diabetes', 'hypertension', 
+                'HbA1c']
+    values = []
+    prev = False
+    if request.method == 'POST':
+        prev = not prev
+        gender=request.POST.get('gender')
+        smoking=request.POST.get('smoking') 
+        glucose=request.POST.get('glucose')
+        age=request.POST.get('age')
+        bmi=request.POST.get('bmi')
+        diabetes=request.POST.get('diabetes')
+        hypertension=request.POST.get('hypertension')
+        HbA1c=request.POST.get('HbA1c')
+        
+        error = False
+        if not gender or not smoking or  not glucose or not age or not bmi or not diabetes or  not hypertension or not HbA1c :
+            error = True
+            return render(request, 'cardio.html', {'error': error})
+        for feature in features:
+            value = request.POST.get(feature)
+            if value is not None:
+                values.append(float(value))  # Convert the input value to float
+            else:
+                # Handle missing values appropriately, e.g., by setting a default value
+                values.append(0.0)
+
+        hasCardio = model.predict([values])[0]
+    else:
+        hasCardio = 0  # Default value if the form is not submitted
+    return render(request,'cardio.html',{'hasCardio':hasCardio,'prev':prev})
+
+def gestational(request):
+   
+    model = pickle.load(open('gestation.pkl', 'rb'))
+    features = ['age', 'history', 'dia_BP', 'pregnancy', 'loss', 'OGTT', 'gestation', 
+                'default','haemoglobin','bmi','PCOS','cycle','HDL','sys_BP','prediabetes']
+    values = []
+    prev = False
+    if request.method == 'POST':
+        prev = not prev
+        age=request.POST.get('age')
+        history=request.POST.get('history') 
+        dia_BP=request.POST.get('dia_BP')
+        pregnancy=request.POST.get('pregnancy')
+        loss=request.POST.get('loss')
+        OGTT=request.POST.get('OGTT')
+        gestation=request.POST.get('gestation')
+        default=request.POST.get('default')
+        haemoglobin=request.POST.get('haemoglobin')
+        bmi=request.POST.get('bmi') 
+        PCOS=request.POST.get('PCOS')
+        cycle=request.POST.get('cycle')
+        HDL=request.POST.get('HDL')
+        sys_BP=request.POST.get('sys_BP')
+        prediabetes=request.POST.get('prediabetes')
+        
+        
+        error = False
+        if not age or not history or  not dia_BP or not pregnancy or not loss or not OGTT or  not gestation or not default or  not haemoglobin or not bmi or not PCOS or not cycle or  not HDL or not sys_BP or not prediabetes  :
+            error = True
+            return render(request, 'gestational.html', {'error': error})
+        for feature in features:
+            value = request.POST.get(feature)
+            if value is not None:
+                values.append(float(value))  # Convert the input value to float
+            else:
+                # Handle missing values appropriately, e.g., by setting a default value
+                values.append(0.0)
+
+        hasGestational = model.predict([values])[0]
+    else:
+        hasGestational = 0  # Default value if the form is not submitted
+   
+
+    return render(request,'gestational.html',{'hasGestational':hasGestational,'prev':prev})
+
+def nephropathy(request):
+    # model = joblib.load('nephropathy.pkl')
+    model = pickle.load(open('nephropathy.pkl', 'rb'))
+    features = ['sex', 'smoking', 'DBP', 'HDLC', 'age', 'drinking', 'HbA1c', 
+                'LDLC','duration','bmi','FBG','insulin','retinopathy','SBP','peptide']
+    values = []
+    prev = False
+    if request.method == 'POST':
+        prev = not prev
+        sex=request.POST.get('sex')
+        smoking=request.POST.get('smoking') 
+        DBP=request.POST.get('DBP')
+        HDLC=request.POST.get('HDLC')
+        age=request.POST.get('age')
+        drinking=request.POST.get('drinking')
+        HbA1c=request.POST.get('HbA1c')
+        LDLC=request.POST.get('LDLC')
+        duration=request.POST.get('duration')
+        bmi=request.POST.get('bmi') 
+        FBG=request.POST.get('FBG')
+        insulin=request.POST.get('insulin')
+        retinopathy=request.POST.get('retinopathy')
+        SBP=request.POST.get('SBP')
+        peptide=request.POST.get('peptide')
+        
+        
+        error = False
+        if not sex or not smoking or  not DBP or not HDLC or not age or not drinking or  not HbA1c or not LDLC or  not duration or not bmi or not FBG or not insulin or  not retinopathy or not SBP or not peptide  :
+            error = True
+            return render(request, 'nephropathy.html', {'error': error})
+        for feature in features:
+            value = request.POST.get(feature)
+            if value is not None:
+                values.append(float(value))  # Convert the input value to float
+            else:
+                # Handle missing values appropriately, e.g., by setting a default value
+                values.append(0.0)
+
+        hasNephropathy = model.predict([values])[0]
+    else:
+        hasNephropathy = 0  # Default value if the form is not submitted
+   
+
+    return render(request,'nephropathy.html',{'hasNephropathy':hasNephropathy,'prev':prev})
+
+
 def not_found(request,unknown_path):
     return render(request,'error.html',{'path':unknown_path },status=404)
+
+def about(request):
+    return render(request,'about.html')

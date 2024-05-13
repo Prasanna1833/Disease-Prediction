@@ -41,6 +41,11 @@
       align-items: center;
       justify-content: center;
     }
+    .disease select option {
+      font-size: 16px;
+      color: rgb(93, 88, 88);
+      font-weight: 500;
+    }
 
     .card a {
       text-decoration: none;
@@ -75,7 +80,7 @@
 
     .form_div h2 {
       text-align: center;
-      font-size: 25px;
+      font-size: 21px;
 
       font-weight: 600;
     }
@@ -124,8 +129,8 @@
     }
     select {
       font-size: 16px;
-      height: 45px;
-      border-radius: 5px;
+      height: 55px;
+      border-radius: 10px;
       font-weight: 500px;
       letter-spacing: 1px;
       padding-left: 10px;
@@ -133,9 +138,12 @@
       color: rgb(95, 95, 95);
       border: 1px solid rgb(169, 169, 169);
     }
+    #diabetes_types {
+      border: 1px solid transparent;
+    }
     input {
-      height: 45px;
-      border-radius: 5px;
+      height: 55px;
+      border-radius: 10px;
       font-size: 16px;
       letter-spacing: 1px;
       padding-left: 10px;
@@ -156,20 +164,27 @@
             </div></a
           >
 
-          <a href="{% url 'diabetes' %}">
-            <div class="disease" style="background-color: rgb(245, 248, 181)">
-              Diabetes
-            </div></a
-          >
           <a href="{% url 'parkinson' %}"
             ><div class="disease" style="background-color: rgb(245, 248, 181)">
               Parkinson
             </div></a
           >
+
+          <div class="disease" style="background-color: rgb(245, 248, 181)">
+            <select name="diabetes_types" id="diabetes_types">
+              <option value="" selected disabled>
+                Select the Diabetes type
+              </option>
+              <option value="diabetes">Diabetes</option>
+              <option value="cardio">Diabetes Cardiomyopathy</option>
+              <option value="gestational">Gestational Diabetes</option>
+              <option value="nephropathy">Diabetic Nephropathy</option>
+            </select>
+          </div>
         </div>
       </div>
       <div class="form_div">
-        <h2>Common Disease Prediction</h2>
+        <h2>COMMON DISEASE PREDICTION</h2>
 
         <form action="{% url 'result' %}" method="post">
           {% csrf_token %}
@@ -194,7 +209,7 @@
             </div>
             <div class="content">
               <label for="symptom1">Symptom 1 *</label>
-              <select name="symptom1" id="symptom1">
+              <select name="symptom1" id="symptom1" class="selector">
                 <option value="" selected disabled>Select symptom</option>
                 {% for symptom in symptoms %}
                 <option value="{{symptom}}">{{symptom}}</option>
@@ -203,7 +218,7 @@
             </div>
             <div class="content">
               <label for="symptom2">Symptom 2 *</label>
-              <select name="symptom2" id="symptom2">
+              <select name="symptom2" id="symptom2" class="selector">
                 <option value="" selected disabled>Select symptom</option>
                 {% for symptom in symptoms %}
                 <option value="{{symptom}}">{{symptom}}</option>
@@ -212,7 +227,7 @@
             </div>
             <div class="content">
               <label for="symptom3">Symptom 3</label>
-              <select name="symptom3" id="symptom3">
+              <select name="symptom3" id="symptom3" class="selector">
                 <option value="" selected disabled>Select symptom</option>
                 {% for symptom in symptoms %}
                 <option value="{{symptom}}">{{symptom}}</option>
@@ -221,7 +236,7 @@
             </div>
             <div class="content">
               <label for="symptom4">Symptom 4</label>
-              <select name="symptom4" id="symptom4">
+              <select name="symptom4" id="symptom4" class="selector">
                 <option value="" selected disabled>Select symptom</option>
                 {% for symptom in symptoms %}
                 <option value="{{symptom}}">{{symptom}}</option>
@@ -230,7 +245,7 @@
             </div>
             <div class="content">
               <label for="symptom5">Symptom 5</label>
-              <select name="symptom5" id="symptom5">
+              <select name="symptom5" id="symptom5" class="selector">
                 <option value="" selected disabled>Select symptom</option>
                 {% for symptom in symptoms %}
                 <option value="{{symptom}}">{{symptom}}</option>
@@ -244,6 +259,55 @@
         </form>
       </div>
     </div>
+    <script>
+      document
+        .getElementById("diabetes_types")
+        .addEventListener("change", function () {
+          var selected = this.value;
+          switch (selected) {
+            case "diabetes":
+              window.location.href = "/diabetes/";
+              break;
+            case "cardio":
+              window.location.href = "/diabetes/cardio";
+              break;
+            case "nephropathy":
+              window.location.href = "/diabetes/nephropathy";
+              break;
+            case "gestational":
+              window.location.href = "/diabetes/gestational";
+              break;
+          }
+        });
+
+      let selectedSymptoms = [];
+
+      // Function to disable selected symptom in all select tags
+      function disableSelectedSymptom(symptom) {
+        document.querySelectorAll(".selector").forEach((selector) => {
+          Array.from(selector.options).forEach((option) => {
+            if (option.value === symptom) {
+              option.disabled = true; // Disable the option
+            } else {
+              option.disabled = selectedSymptoms.includes(option.value); // Disable if already selected
+            }
+          });
+        });
+      }
+
+      // Event listener for each select tag
+      document.querySelectorAll(".selector").forEach((selector) => {
+        selector.addEventListener("change", (event) => {
+          const selectedSymptom = event.target.value;
+
+          // Add selected symptom to the array
+          selectedSymptoms.push(selectedSymptom);
+
+          // Disable selected symptom in all other select tags
+          disableSelectedSymptom(selectedSymptom);
+        });
+      });
+    </script>
   </body>
 </html>
 {% endblock %}
