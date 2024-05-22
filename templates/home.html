@@ -17,7 +17,7 @@
       box-sizing: border-box;
     }
     body {
-      overflow: hidden;
+      overflow-x: hidden;
     }
     .container {
       display: flex;
@@ -134,21 +134,29 @@
       font-weight: 500px;
       letter-spacing: 1px;
       padding-left: 10px;
-      background-color: rgb(245, 248, 181);
+
       color: rgb(95, 95, 95);
       border: 1px solid rgb(169, 169, 169);
     }
-    #diabetes_types {
-      border: 1px solid transparent;
-    }
+
     input {
       height: 55px;
       border-radius: 10px;
       font-size: 16px;
       letter-spacing: 1px;
       padding-left: 10px;
+      /* background-color: rgb(245, 248, 181); */
+      border: 1px solid rgb(169, 169, 169);
+    }
+    .diabetes_types {
       background-color: rgb(245, 248, 181);
       border: 1px solid rgb(169, 169, 169);
+    }
+    .heading {
+      background-image: linear-gradient(white, #fde7ea);
+      height: 60px;
+      display: grid;
+      place-items: center;
     }
   </style>
 
@@ -159,19 +167,31 @@
           <p>Multiple Disease Prediction System</p>
 
           <a href="{% url 'heart' %}">
-            <div class="disease" style="background-color: rgb(245, 248, 181)">
+            <div
+              class="disease"
+              style="
+                background-color: rgb(245, 248, 181);
+                border: 1px solid rgb(169, 169, 169);
+              "
+            >
               Heart Disease
             </div></a
           >
 
           <a href="{% url 'parkinson' %}"
-            ><div class="disease" style="background-color: rgb(245, 248, 181)">
+            ><div
+              class="disease"
+              style="
+                background-color: rgb(245, 248, 181);
+                border: 1px solid rgb(169, 169, 169);
+              "
+            >
               Parkinson
             </div></a
           >
 
           <div class="disease" style="background-color: rgb(245, 248, 181)">
-            <select name="diabetes_types" id="diabetes_types">
+            <select name="diabetes_types" class="diabetes_types">
               <option value="" selected disabled>
                 Select the Diabetes type
               </option>
@@ -184,8 +204,7 @@
         </div>
       </div>
       <div class="form_div">
-        <h2>COMMON DISEASE PREDICTION</h2>
-
+        <div class="heading"><h2>COMMON DISEASE PREDICTION</h2></div>
         <form action="{% url 'result' %}" method="post">
           {% csrf_token %}
           <div class="contents">

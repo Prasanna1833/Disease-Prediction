@@ -124,7 +124,7 @@
       border-radius: 10px;
       font-size: 20px;
       text-align: center;
-      background-color: rgb(245, 248, 181);
+      /* background-color: rgb(245, 248, 181); */
       border: 1px solid rgb(169, 169, 169);
     }
 
@@ -137,15 +137,7 @@
       width: 50%;
       margin-top: 20px;
     }
-    .positive_answer {
-      width: 50%;
-      margin: 20px auto;
-      border: 1px solid red;
-      border-radius: 5px;
-      padding: 20px 20px;
-      background-color: rgb(250, 179, 179);
-      color: rgb(194, 29, 29);
-    }
+
     .negative_answer {
       width: 50%;
       margin: 20px auto;
@@ -170,6 +162,30 @@
       color: rgb(95, 95, 95);
       border: 1px solid transparent;
     }
+    .heading {
+      background-image: linear-gradient(white, #fde7ea);
+      height: 60px;
+      display: grid;
+      place-items: center;
+    }
+    .prevention {
+      min-width: 80%;
+      border: 1px solid transparent;
+      padding: 10px 20px;
+      text-align: justify;
+      background-color: rgb(251, 251, 153);
+      line-height: 20px;
+    }
+    .warning {
+      width: 50%;
+      margin: 20px auto;
+      border: 1px solid red;
+      border-radius: 5px;
+      padding: 20px 20px;
+      background-color: rgb(250, 179, 179);
+      color: rgb(194, 29, 29);
+      text-align: center;
+    }
   </style>
   <body>
     <div class="container">
@@ -178,13 +194,25 @@
           <p>Multiple Disease Prediction System</p>
 
           <a href="{% url 'heart' %}">
-            <div class="disease" style="background-color: rgb(245, 248, 181)">
+            <div
+              class="disease"
+              style="
+                background-color: rgb(245, 248, 181);
+                border: 1px solid rgb(169, 169, 169);
+              "
+            >
               Heart Disease
             </div></a
           >
 
           <a href="{% url 'parkinson' %}"
-            ><div class="disease" style="background-color: rgb(245, 248, 181)">
+            ><div
+              class="disease"
+              style="
+                background-color: rgb(245, 248, 181);
+                border: 1px solid rgb(169, 169, 169);
+              "
+            >
               Parkinson
             </div></a
           >
@@ -205,7 +233,7 @@
       </div>
 
       <div class="form_div">
-        <h2>DIABETES PREDICTION USING ML</h2>
+        <div class="heading"><h2>DIABETES PREDICTION USING ML</h2></div>
         {% if error %}
         <div class="error">
           <p>All the fields are required, Enter all the fields</p>
@@ -253,23 +281,54 @@
         </form>
         {% if hasDiabetes == 1 and prev %}
         <div class="positive_answer" style="display: block">
-          <h2>Oops!! You may be having the Diabetes</h2>
-          <p style="text-align: center">
-            ( Know more about
-            <a href="https://en.wikipedia.org/wiki/Diabetes" target="_blank"
-              >Diabetes
-            </a>
-            on Wikipedia )
-          </p>
+          <div class="warning">
+            <h2>Oops!! You may be having the Diabetes</h2>
+            <p style="text-align: center">
+              ( Know more about
+              <a href="https://en.wikipedia.org/wiki/Diabetes" target="_blank"
+                >Diabetes
+              </a>
+              on Wikipedia )
+            </p>
+          </div>
+          <div class="prevention">
+            <h3 style="text-align: center">Preventive measures</h3>
+
+            <p>
+              There is no known preventive measure for type 1 diabetes. However,
+              islet autoimmunity and multiple antibodies can be a strong
+              predictor of the onset of type 1 diabetes. Type 2 diabetes—which
+              accounts for 85–90% of all cases worldwide—can often be prevented
+              or delayed by maintaining a normal body weight, engaging in
+              physical activity, and eating a healthy diet. Higher levels of
+              physical activity (more than 90 minutes per day) reduce the risk
+              of diabetes by 28%. Dietary changes known to be effective in
+              helping to prevent diabetes include maintaining a diet rich in
+              whole grains and fiber, and choosing good fats, such as the
+              polyunsaturated fats found in nuts, vegetable oils, and fish.
+              Limiting sugary beverages and eating less red meat and other
+              sources of saturated fat can also help prevent diabetes. Tobacco
+              smoking is also associated with an increased risk of diabetes and
+              its complications, so smoking cessation can be an important
+              preventive measure as well The relationship between type 2
+              diabetes and the main modifiable risk factors (excess weight,
+              unhealthy diet, physical inactivity and tobacco use) is similar in
+              all regions of the world. There is growing evidence that the
+              underlying determinants of diabetes are a reflection of the major
+              forces driving social, economic and cultural change:
+              globalization, urbanization, population aging, and the general
+              health policy environment.
+            </p>
+          </div>
         </div>
         {% elif hasDiabetes == 0 and prev %}
         <div class="negative_answer" style="display: block">
-          <h2>You are safe!! you may not be having Heart Disease</h2>
+          <h2>You are safe!! you may not be having Diabetes</h2>
         </div>
         {% endif %}
       </div>
     </div>
-    <script>
+    <script type="text/javascript">
       document
         .getElementById("diabetes_types")
         .addEventListener("change", function () {
@@ -289,6 +348,34 @@
               break;
           }
         });
+
+      // const form = document.querySelector("form");
+      // const pregnancy = document.getElementById("pregnancy");
+      // const glucose = document.getElementById("glucose");
+      // const bp = document.getElementById("bp");
+      // const thickness = document.getElementById("thickness");
+      // const insulin = document.getElementById("insulin");
+      // const bmi = document.getElementById("bmi");
+      // const pedigree = document.getElementById("pedigree");
+      // const age = document.getElementById("age");
+      // const csrf = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+      // form.addEventListener("submit", (e) => {
+      //   e.preventDefault();
+      //   const newform = new FormData();
+      //   newform.append("pregnancy", pregnancy.value);
+      //   newform.append("glucose", glucose.value);
+      //   newform.append("bp", bp.value);
+      //   newform.append("thickness", thickness.value);
+      //   newform.append("insulin", insulin.value);
+      //   newform.append("bmi", bmi.value);
+      //   newform.append("pedigree", pedigree.value);
+      //   newform.append("age", age.value);
+      //   newform.append("csrfmiddlewaretoken", csrf);
+      //   fetch("{% url 'diabetes' %}", {
+      //     method: "POST",
+      //     body: newform,
+      //   });
+      // });
     </script>
   </body>
 </html>

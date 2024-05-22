@@ -123,7 +123,7 @@
       border-radius: 10px;
       font-size: 20px;
       text-align: center;
-      background-color: rgb(245, 248, 181);
+      /* background-color: rgb(245, 248, 181); */
       border: 1px solid rgb(169, 169, 169);
     }
 
@@ -136,15 +136,7 @@
       width: 50%;
       margin-top: 20px;
     }
-    .positive_answer {
-      width: 50%;
-      margin: 20px auto;
-      border: 1px solid red;
-      border-radius: 5px;
-      padding: 20px 20px;
-      background-color: rgb(250, 179, 179);
-      color: rgb(194, 29, 29);
-    }
+
     .negative_answer {
       width: 50%;
       margin: 20px auto;
@@ -169,6 +161,30 @@
       color: rgb(95, 95, 95);
       border: 1px solid transparent;
     }
+    .heading {
+      background-image: linear-gradient(white, #fde7ea);
+      height: 60px;
+      display: grid;
+      place-items: center;
+    }
+    .prevention {
+      min-width: 80%;
+      border: 1px solid transparent;
+      padding: 10px 20px;
+      text-align: justify;
+      background-color: rgb(251, 251, 153);
+      line-height: 20px;
+    }
+    .warning {
+      width: 50%;
+      margin: 20px auto;
+      border: 1px solid red;
+      border-radius: 5px;
+      padding: 20px 20px;
+      background-color: rgb(250, 179, 179);
+      color: rgb(194, 29, 29);
+      text-align: center;
+    }
   </style>
   <body>
     <div class="container">
@@ -177,7 +193,13 @@
           <p>Multiple Disease Prediction System</p>
 
           <a href="{% url 'heart' %}">
-            <div class="disease" style="background-color: rgb(245, 248, 181)">
+            <div
+              class="disease"
+              style="
+                background-color: rgb(245, 248, 181);
+                border: 1px solid rgb(169, 169, 169);
+              "
+            >
               Heart Disease
             </div></a
           >
@@ -188,7 +210,13 @@
             </div></a
           >
 
-          <div class="disease" style="background-color: rgb(245, 248, 181)">
+          <div
+            class="disease"
+            style="
+              background-color: rgb(245, 248, 181);
+              border: 1px solid rgb(169, 169, 169);
+            "
+          >
             <select name="diabetes_types" id="diabetes_types">
               <option value="" selected disabled>
                 Select the Diabetes type
@@ -203,7 +231,9 @@
       </div>
 
       <div class="form_div">
-        <h2>PARKINSON'S DISEASE PREDICTION USING ML</h2>
+        <div class="heading">
+          <h2>PARKINSON'S DISEASE PREDICTION USING ML</h2>
+        </div>
         {% if error %}
         <div class="error">
           <p>All the fields are required, Enter all the fields</p>
@@ -214,7 +244,12 @@
           <div class="contents">
             <div class="content">
               <label for="avgmdvp">Average MDVP (Hz) *</label>
-              <input type="number" step="0.0000001" name="amdvp" id="amdvp" />
+              <input
+                type="number"
+                step="0.0000001"
+                name="avgmdvp"
+                id="avgmdvp"
+              />
             </div>
             <div class="content">
               <label for="maxadvp">maximum MDVP (Hz) *</label>
@@ -367,20 +402,53 @@
         </form>
         {% if hasParkinson == 1 and prev %}
         <div class="positive_answer" style="display: block">
-          <h2>Oops!! You may be having the Parkinson's disease</h2>
-          <p>
-            ( Know more about
-            <a
-              href="https://en.wikipedia.org/wiki/Parkinson%27s_disease"
-              target="_blank"
-              >Parkinsons's disease</a
-            >
-            on Wikipedia )
-          </p>
+          <div class="warning">
+            <h2>Oops!! You may be having the Parkinson's disease</h2>
+            <p>
+              ( Know more about
+              <a
+                href="https://en.wikipedia.org/wiki/Parkinson%27s_disease"
+                target="_blank"
+                >Parkinsons's disease</a
+              >
+              on Wikipedia )
+            </p>
+          </div>
+          <div class="prevention">
+            <h3 style="text-align: center">Preventive measures</h3>
+
+            <p>
+              * Exercise in middle age may reduce the risk of PD later in life.
+            </p>
+            <p>
+              * Caffeine appears protective with a greater decrease in risk
+              occurring with a larger intake of caffeinated beverages such as
+              coffee
+            </p>
+
+            <p>
+              * Antioxidants, such as vitamins C and E, have been proposed to
+              protect against the disease
+            </p>
+            <p>
+              * Antioxidants, such as vitamins C and E, have been proposed to
+              protect against the disease, but results of studies have been
+              contradictory and no positive effect has been shown. The results
+              regarding fat and fatty acids have been contradictory. Use of
+              nonsteroidal anti-inflammatory drugs (NSAIDs) and calcium channel
+              blockers may be protective. A 2010 meta-analysis found that NSAIDs
+              (apart from aspirin), have been associated with at least a 15%
+              (higher in long-term and regular users) reduction in the incidence
+              of the development of PD. As of 2019 meta-analyses have failed to
+              confirm this link. Multiple studies have demonstrated a link
+              between the use of ibuprofen and a decreased risk of Parkinson's
+              development.
+            </p>
+          </div>
         </div>
         {% elif hasParkinson == 0 and prev %}
         <div class="negative_answer" style="display: block">
-          <h2>You are safe!! you may not be having Heart Disease</h2>
+          <h2>You are safe!! you may not be having Parkinson's Disease</h2>
         </div>
         {% endif %}
       </div>

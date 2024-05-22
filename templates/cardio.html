@@ -123,7 +123,7 @@
       border-radius: 10px;
       font-size: 20px;
       text-align: center;
-      background-color: rgb(245, 248, 181);
+      /* background-color: rgb(245, 248, 181); */
       border: 1px solid rgb(169, 169, 169);
     }
 
@@ -136,15 +136,7 @@
       width: 50%;
       margin-top: 20px;
     }
-    .positive_answer {
-      width: 50%;
-      margin: 20px auto;
-      border: 1px solid red;
-      border-radius: 5px;
-      padding: 20px 20px;
-      background-color: rgb(250, 179, 179);
-      color: rgb(194, 29, 29);
-    }
+
     .negative_answer {
       width: 50%;
       margin: 20px auto;
@@ -169,6 +161,30 @@
       color: rgb(95, 95, 95);
       border: 1px solid transparent;
     }
+    .heading {
+      background-image: linear-gradient(white, #fde7ea);
+      height: 60px;
+      display: grid;
+      place-items: center;
+    }
+    .prevention {
+      min-width: 80%;
+      border: 1px solid transparent;
+      padding: 10px 20px;
+      text-align: justify;
+      background-color: rgb(251, 251, 153);
+      line-height: 20px;
+    }
+    .warning {
+      width: 50%;
+      margin: 20px auto;
+      border: 1px solid red;
+      border-radius: 5px;
+      padding: 20px 20px;
+      background-color: rgb(250, 179, 179);
+      color: rgb(194, 29, 29);
+      text-align: center;
+    }
   </style>
   <body>
     <div class="container">
@@ -177,13 +193,25 @@
           <p>Multiple Disease Prediction System</p>
 
           <a href="{% url 'heart' %}">
-            <div class="disease" style="background-color: rgb(245, 248, 181)">
+            <div
+              class="disease"
+              style="
+                background-color: rgb(245, 248, 181);
+                border: 1px solid rgb(169, 169, 169);
+              "
+            >
               Heart Disease
             </div></a
           >
 
           <a href="{% url 'parkinson' %}"
-            ><div class="disease" style="background-color: rgb(245, 248, 181)">
+            ><div
+              class="disease"
+              style="
+                background-color: rgb(245, 248, 181);
+                border: 1px solid rgb(169, 169, 169);
+              "
+            >
               Parkinson
             </div></a
           >
@@ -204,7 +232,9 @@
       </div>
 
       <div class="form_div">
-        <h2>DIABETES CARDIOMYOPATHY PREDICTION USING ML</h2>
+        <div class="heading">
+          <h2>DIABETES CARDIOMYOPATHY PREDICTION USING ML</h2>
+        </div>
         {% if error %}
         <div class="error">
           <p>All the fields are required, Enter all the fields</p>
@@ -253,17 +283,43 @@
         </form>
         {% if hasCardio == 1 and prev %}
         <div class="positive_answer" style="display: block">
-          <h2>Oops!! You may be having the Diabetic Cardiomyopathy</h2>
-          <p>
-            ( Know more about
-            <a
-              href="https://en.wikipedia.org/wiki/Diabetic_cardiomyopathy"
-              target="_blank"
-              >Diabetic Cardiomyopathy</a
-            >
-            on Wikipedia )
-          </p>
+          <div class="warning">
+            <h2>Oops!! You may be having the Diabetic Cardiomyopathy</h2>
+            <p>
+              ( Know more about
+              <a
+                href="https://en.wikipedia.org/wiki/Diabetic_cardiomyopathy"
+                target="_blank"
+                >Diabetic Cardiomyopathy</a
+              >
+              on Wikipedia )
+            </p>
+          </div>
+          <div class="prevention">
+            <h3 style="text-align: center">Treatment</h3>
+
+            <p>
+              At present, there is no effective specific treatment available for
+              diabetic cardiomyopathy.[23] Treatment rationale centers around
+              intense glycemic control through diet and preferential use of
+              certain medications in diabetic patients at high risk for
+              developing cardiovascular disease or heart failure. A rationale
+              for therapeutic decision making in individuals with coexistent
+              diabetes mellitus and HF is less clear because there is a
+              possibility that additional factors beyond glycemia might
+              contribute to the increased HF risk in diabetes mellitus.[24]
+              Thiazolidinediones are not recommended in patients with NYHA Class
+              III or IV heart failure secondary to fluid retention.[25] As with
+              most other heart diseases, ACE inhibitors can also be
+              administered. An analysis of major clinical trials shows that
+              diabetic patients with heart failure benefit from such a therapy
+              to a similar degree as non-diabetics.[26] Similarly, beta blockers
+              are also common in the treatment of heart failure concurrently
+              with ACE inhibitors.[24]
+            </p>
+          </div>
         </div>
+
         {% elif hasCardio == 0 and prev %}
         <div class="negative_answer" style="display: block">
           <h2>You are safe!! you may not be having Diabetic Cardiomyopathy</h2>

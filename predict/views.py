@@ -295,7 +295,8 @@ def diabetes(request):
 #     return render(request,'error.html',{'path':unknown_path},status=404)
 
 def cardio(request):
-    model = joblib.load('cardio.pkl')
+    
+    model = pickle.load(open('cardio.pkl', 'rb'))
     features = ['gender', 'smoking', 'glucose', 'age', 'bmi', 'diabetes', 'hypertension', 
                 'HbA1c']
     values = []

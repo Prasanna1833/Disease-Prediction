@@ -40,6 +40,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      background-color: rgb(245, 248, 181);
     }
 
     .card a {
@@ -123,7 +124,9 @@
       border-radius: 10px;
       font-size: 20px;
       text-align: center;
-      background-color: rgb(245, 248, 181);
+      /* background-color: rgb(245, 248, 181); */
+      /* background-image: linear-gradient(white, #fdefda); */
+
       border: 1px solid rgb(169, 169, 169);
     }
 
@@ -136,7 +139,7 @@
       width: 50%;
       margin-top: 20px;
     }
-    .positive_answer {
+    .warning {
       width: 50%;
       margin: 20px auto;
       border: 1px solid red;
@@ -144,6 +147,7 @@
       padding: 20px 20px;
       background-color: rgb(250, 179, 179);
       color: rgb(194, 29, 29);
+      text-align: center;
     }
     .negative_answer {
       width: 50%;
@@ -165,9 +169,24 @@
       font-weight: 500px;
       letter-spacing: 1px;
       padding-left: 10px;
+
       background-color: rgb(245, 248, 181);
       color: rgb(95, 95, 95);
       border: 1px solid transparent;
+    }
+    .prevention {
+      min-width: 80%;
+      border: 1px solid transparent;
+      padding: 10px 20px;
+      text-align: justify;
+      background-color: rgb(251, 251, 153);
+      line-height: 20px;
+    }
+    .heading {
+      background-image: linear-gradient(white, #fde7ea);
+      height: 60px;
+      display: grid;
+      place-items: center;
     }
   </style>
   <body>
@@ -183,12 +202,18 @@
           >
 
           <a href="{% url 'parkinson' %}"
-            ><div class="disease" style="background-color: rgb(245, 248, 181)">
+            ><div
+              class="disease"
+              style="
+                background-color: rgb(245, 248, 181);
+                border: 1px solid rgb(169, 169, 169);
+              "
+            >
               Parkinson
             </div></a
           >
 
-          <div class="disease" style="background-color: rgb(245, 248, 181)">
+          <div class="disease" style="border: 1px solid rgb(169, 169, 169)">
             <select name="diabetes_types" id="diabetes_types">
               <option value="" selected disabled>
                 Select the Diabetes type
@@ -203,7 +228,7 @@
       </div>
 
       <div class="form_div">
-        <h2>HEART DISEASE PREDICTION USING ML</h2>
+        <div class="heading"><h2>HEART DISEASE PREDICTION USING ML</h2></div>
         {% if error %}
         <div class="error">
           <p>All the fields are required, Enter all the fields</p>
@@ -278,16 +303,52 @@
         </form>
         {% if hasHeartDisease == 1 and prev %}
         <div class="positive_answer" style="display: block">
-          <h2>Oops!! You may be having the Heart Disease</h2>
-          <p>
-            ( Know more about
-            <a
-              href="https://en.wikipedia.org/wiki/Cardiovascular_disease"
-              target="_blank"
-              >Heart disease</a
-            >
-            on Wikipedia )
-          </p>
+          <div class="warning">
+            <h2>Oops!! You may be having the Heart Disease</h2>
+            <p>
+              ( Know more about
+              <a
+                href="https://en.wikipedia.org/wiki/Cardiovascular_disease"
+                target="_blank"
+                >Heart disease</a
+              >
+              on Wikipedia )
+            </p>
+          </div>
+          <div class="prevention">
+            <h3 style="text-align: center">Preventive measures</h3>
+
+            <p>
+              * Maintaining a healthy diet, such as the Mediterranean diet, a
+              vegetarian, vegan or another plant-based diet.
+            </p>
+            <p>
+              * Replacing saturated fat with healthier choices: Clinical trials
+              show that replacing saturated fat with polyunsaturated vegetable
+              oil reduced CVD by 30%. Prospective observational studies show
+              that in many populations lower intake of saturated fat coupled
+              with higher intake of polyunsaturated and monounsaturated fat is
+              associated with lower rates of CVD
+            </p>
+
+            <p>
+              *Decrease body fat if overweight or obese.The effect of weight
+              loss is often difficult to distinguish from dietary change, and
+              evidence on weight reducing diets is limited. In observational
+              studies of people with severe obesity, weight loss following
+              bariatric surgery is associated with a 46% reduction in
+              cardiovascular risk
+            </p>
+            <p>
+              *alcohol consumption to the recommended daily limits. People who
+              moderately consume alcoholic drinks have a 25–30% lower risk of
+              cardiovascular disease. However, people who are genetically
+              predisposed to consume less alcohol have lower rates of
+              cardiovascular disease suggesting that alcohol itself may not be
+              protective. Excessive alcohol intake increases the risk of
+              cardiovascular disease
+            </p>
+          </div>
         </div>
         {% elif hasHeartDisease == 0 and prev %}
         <div class="negative_answer" style="display: block">

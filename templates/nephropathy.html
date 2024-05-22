@@ -123,7 +123,7 @@
       border-radius: 10px;
       font-size: 20px;
       text-align: center;
-      background-color: rgb(245, 248, 181);
+      /* background-color: rgb(245, 248, 181); */
       border: 1px solid rgb(169, 169, 169);
     }
 
@@ -136,15 +136,7 @@
       width: 50%;
       margin-top: 20px;
     }
-    .positive_answer {
-      width: 50%;
-      margin: 20px auto;
-      border: 1px solid red;
-      border-radius: 5px;
-      padding: 20px 20px;
-      background-color: rgb(250, 179, 179);
-      color: rgb(194, 29, 29);
-    }
+
     .negative_answer {
       width: 50%;
       margin: 20px auto;
@@ -169,6 +161,30 @@
       color: rgb(95, 95, 95);
       border: 1px solid transparent;
     }
+    .heading {
+      background-image: linear-gradient(white, #fde7ea);
+      height: 60px;
+      display: grid;
+      place-items: center;
+    }
+    .prevention {
+      min-width: 80%;
+      border: 1px solid transparent;
+      padding: 10px 20px;
+      text-align: justify;
+      background-color: rgb(251, 251, 153);
+      line-height: 20px;
+    }
+    .warning {
+      width: 50%;
+      margin: 20px auto;
+      border: 1px solid red;
+      border-radius: 5px;
+      padding: 20px 20px;
+      background-color: rgb(250, 179, 179);
+      color: rgb(194, 29, 29);
+      text-align: center;
+    }
   </style>
   <body>
     <div class="container">
@@ -177,13 +193,25 @@
           <p>Multiple Disease Prediction System</p>
 
           <a href="{% url 'heart' %}">
-            <div class="disease" style="background-color: rgb(245, 248, 181)">
+            <div
+              class="disease"
+              style="
+                background-color: rgb(245, 248, 181);
+                border: 1px solid rgb(169, 169, 169);
+              "
+            >
               Heart Disease
             </div></a
           >
 
           <a href="{% url 'parkinson' %}"
-            ><div class="disease" style="background-color: rgb(245, 248, 181)">
+            ><div
+              class="disease"
+              style="
+                background-color: rgb(245, 248, 181);
+                border: 1px solid rgb(169, 169, 169);
+              "
+            >
               Parkinson
             </div></a
           >
@@ -205,7 +233,9 @@
       </div>
 
       <div class="form_div">
-        <h2>DIABETIC NEPHROPATHY PREDICTION USING ML</h2>
+        <div class="heading">
+          <h2>DIABETIC NEPHROPATHY PREDICTION USING ML</h2>
+        </div>
         {% if error %}
         <div class="error">
           <p>All the fields are required, Enter all the fields</p>
@@ -284,16 +314,50 @@
         </form>
         {% if hasNephropathy == 1 and prev %}
         <div class="positive_answer" style="display: block">
-          <h2>Oops!! You may be having Diabetic nephropathy</h2>
-          <p>
-            ( Know more about
-            <a
-              href="https://en.wikipedia.org/wiki/Diabetic_nephropathy"
-              target="_blank"
-              >Diabetic nephropathy</a
-            >
-            on Wikipedia )
-          </p>
+          <div class="warning">
+            <h2>Oops!! You may be having Diabetic nephropathy</h2>
+            <p>
+              ( Know more about
+              <a
+                href="https://en.wikipedia.org/wiki/Diabetic_nephropathy"
+                target="_blank"
+                >Diabetic nephropathy</a
+              >
+              on Wikipedia )
+            </p>
+          </div>
+          <div class="prevention">
+            <h3 style="text-align: center">Treatment</h3>
+
+            <p>
+              * Cardiovascular risk reduction: Patients with diabetes mellitus
+              are at significantly increased risk of cardiovascular disease,
+              which is also an independent risk factor for kidney failure.
+              Therefore, it is important to aggressively manage cardiovascular
+              risk factors in patients with diabetes mellitus and in particular
+              those with diabetic nephropathy.
+            </p>
+            <p>
+              * Glycemic control: Multiple studies have found a positive effect
+              of improved glycemic control on clinical outcomes of patients with
+              diabetic nephropathy
+            </p>
+
+            <p>
+              * Blood pressure control: Multiple randomized clinical trials have
+              demonstrated a benefit of decreasing systolic blood pressure to <
+              140 mmHg in patients with diabetic nephropathy. High blood
+              pressure is associated with accelerated development of
+              microalbuminuria, over proteinuria and declining kidney function
+            </p>
+            <p>
+              * RAAS inhibition: Inhibition can be achieved with multiple
+              therapies, mainly ACE inhibitors, angiotensin receptor blockers,
+              direct renin inhibitors, and mineralocorticoid antagonists. RAAS
+              inhibition has been proven to be the most effective therapy to
+              slow the progression of diabetic nephropathy in all stages
+            </p>
+          </div>
         </div>
         {% elif hasNephropathy == 0 and prev %}
         <div class="negative_answer" style="display: block">
