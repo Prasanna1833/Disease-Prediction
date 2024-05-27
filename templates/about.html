@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,6 +12,12 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+    body {
+      background: url("{% static 'images/texture.jpg' %}");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
     }
     .developers {
       margin: 6% auto;
@@ -41,7 +48,10 @@
     .developer:hover {
       cursor: pointer;
       box-shadow: 1px 1px 5px grey;
-      border-radius: 5px;
+      /* border-radius: 5px; */
+    }
+    a {
+      text-decoration: none;
     }
   </style>
   <body>
@@ -49,22 +59,36 @@
       <h3 style="text-align: center; color: rgb(240, 36, 36)">
         DEVELOPMENT TEAM
       </h3>
-      <div class="developer">
-        <h3>PUSHKARAN H S <span class="usn">(1MV20IS041)</span></h3>
-        <p>(DEPARTMENT OF ISE)</p>
-      </div>
-      <div class="developer">
-        <h3>PREETHI A <span class="usn">(1MV20IS040)</span></h3>
-        <p>(DEPARTMENT OF ISE)</p>
-      </div>
-      <div class="developer">
-        <h3>NARESH MADHAV <span class="usn">(1MV20IS025)</span></h3>
-        <p>(DEPARTMENT OF ISE)</p>
-      </div>
-      <div class="developer">
-        <h3>PRASANNA M HEGDE <span class="usn">(1MV20IS037)</span></h3>
-        <p>(DEPARTMENT OF ISE)</p>
-      </div>
+      <a href="https://www.linkedin.com/in/pushkaran16/" target="_blank">
+        <div class="developer">
+          <h3>PUSHKARAN H S <span class="usn">(1MV20IS041)</span></h3>
+          <p>(DEPARTMENT OF ISE)</p>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/preethia05/" target="_blank">
+        <div class="developer">
+          <h3>PREETHI A <span class="usn">(1MV20IS040)</span></h3>
+          <p>(DEPARTMENT OF ISE)</p>
+        </div>
+      </a>
+      <a
+        href="https://www.linkedin.com/in/naresh-madhav-287715206/"
+        target="_blank"
+      >
+        <div class="developer">
+          <h3>NARESH MADHAV <span class="usn">(1MV20IS025)</span></h3>
+          <p>(DEPARTMENT OF ISE)</p>
+        </div>
+      </a>
+      <a
+        href="https://www.linkedin.com/in/prasanna-hegde-7572a2231/"
+        target="_blank"
+      >
+        <div class="developer">
+          <h3>PRASANNA M HEGDE <span class="usn">(1MV20IS037)</span></h3>
+          <p>(DEPARTMENT OF ISE)</p>
+        </div>
+      </a>
     </div>
   </body>
 </html>

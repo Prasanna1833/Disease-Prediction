@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -19,6 +20,11 @@
     }
     body {
       overflow-x: hidden;
+      background-image: url("{% static 'images/crayons.avif' %}");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: right;
+      background-attachment: fixed;
     }
     .container {
       display: flex;
@@ -28,39 +34,61 @@
     .other_disease {
       flex: 0 0 20%;
       border: 1px solid transparent;
-      background-color: var(--background);
+      /* background-color: var(--background);
+      background-image: url("{% static 'images/heart2.jpg' %}");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover; */
     }
 
     .disease {
-      width: 90%;
+      width: 80%;
       height: 50px;
       border: 1px solid transparent;
       cursor: pointer;
       border-radius: 10px;
-      margin: 5px auto;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    .disease select option {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .card select {
+      font-size: 16px;
+      height: 50px;
+      border-radius: 10px;
+      font-weight: 500px;
+      letter-spacing: 1px;
+      padding-left: 10px;
+      border: 1px solid rgb(169, 169, 169);
+    }
+    .diabetes_types {
+      /* background-color: rgb(245, 248, 181); */
+      border: 1px solid rgb(169, 169, 169);
     }
 
     .card a {
       text-decoration: none;
       font-size: 18px;
-      font-weight: 400;
-      color: black;
-      padding: 8px 16px;
+      font-weight: 550;
+      color: rgb(93, 88, 88);
+      padding: 2px 10px;
     }
 
     .card p {
-      font-size: 23px;
+      font-size: 22px;
       font-weight: 600;
       text-align: center;
-      margin-top: 25px;
+      margin-top: 18px;
+      color: red;
     }
 
     .card {
       width: 95%;
-      height: 350px;
+      height: 310px;
       margin: 200px auto;
       border: 1px solid transparent;
       border-radius: 10px;
@@ -74,8 +102,13 @@
     .form_div {
       flex: 0 0 80%;
       padding: 100px 50px;
-      background-color: rgb(252, 211, 136);
+      /* background-color: rgb(252, 211, 136); */
       margin-left: 5px;
+      /* background-image: url("{% static 'images/diabetes.avif' %}");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: right;
+      background-attachment: fixed; */
     }
 
     .form_div h2 {
@@ -128,42 +161,37 @@
       border: 1px solid rgb(169, 169, 169);
     }
 
+    label {
+      text-transform: uppercase;
+      font-weight: 900;
+      /* text-shadow: 1px 1px 30px rgb(248, 149, 149); */
+    }
     .error {
-      background-color: rgb(250, 170, 170);
-      color: red;
+      background-color: red;
+      color: white;
       font-weight: 600;
       border-radius: 5px;
       padding: 10px 20px;
       width: 50%;
       margin-top: 20px;
     }
-
     .negative_answer {
-      width: 50%;
+      width: 80%;
       margin: 20px auto;
-      border: 1px solid green;
-      border-radius: 5px;
+      border: 1px solid transparent;
+      border-radius: 3px;
       padding: 20px 20px;
-      background-color: rgb(145, 201, 145);
-      color: rgb(11, 70, 11);
+      background-color: green;
+      color: white;
     }
     .positive_answer,
     .negative_answer {
       display: none;
     }
-    select {
-      font-size: 16px;
-      height: 45px;
-      border-radius: 5px;
-      font-weight: 500px;
-      letter-spacing: 1px;
-      padding-left: 10px;
-      background-color: rgb(245, 248, 181);
-      color: rgb(95, 95, 95);
-      border: 1px solid transparent;
-    }
+
     .heading {
-      background-image: linear-gradient(white, #fde7ea);
+      background-color: white;
+      color: red;
       height: 60px;
       display: grid;
       place-items: center;
@@ -173,17 +201,19 @@
       border: 1px solid transparent;
       padding: 10px 20px;
       text-align: justify;
-      background-color: rgb(251, 251, 153);
+      background-color: white;
+      color: black;
+      box-shadow: 10px 10px 30px grey;
       line-height: 20px;
     }
     .warning {
       width: 50%;
       margin: 20px auto;
-      border: 1px solid red;
+      border: 1px solid transparent;
       border-radius: 5px;
       padding: 20px 20px;
-      background-color: rgb(250, 179, 179);
-      color: rgb(194, 29, 29);
+      background-color: red;
+      color: white;
       text-align: center;
     }
   </style>
@@ -194,25 +224,13 @@
           <p>Multiple Disease Prediction System</p>
 
           <a href="{% url 'heart' %}">
-            <div
-              class="disease"
-              style="
-                background-color: rgb(245, 248, 181);
-                border: 1px solid rgb(169, 169, 169);
-              "
-            >
+            <div class="disease" style="border: 1px solid rgb(169, 169, 169)">
               Heart Disease
             </div></a
           >
 
           <a href="{% url 'parkinson' %}"
-            ><div
-              class="disease"
-              style="
-                background-color: rgb(245, 248, 181);
-                border: 1px solid rgb(169, 169, 169);
-              "
-            >
+            ><div class="disease" style="border: 1px solid rgb(169, 169, 169)">
               Parkinson
             </div></a
           >
@@ -220,6 +238,7 @@
             <select
               name="diabetes_types"
               id="diabetes_types"
+              class="diabetes_types"
               style="background-color: red; color: white"
             >
               <option value="" disabled>Select the Diabetes type</option>
@@ -329,53 +348,54 @@
       </div>
     </div>
     <script type="text/javascript">
-      document
-        .getElementById("diabetes_types")
-        .addEventListener("change", function () {
-          var selected = this.value;
-          switch (selected) {
-            case "diabetes":
-              window.location.href = "/diabetes/";
-              break;
-            case "cardio":
-              window.location.href = "/diabetes/cardio";
-              break;
-            case "nephropathy":
-              window.location.href = "/diabetes/nephropathy";
-              break;
-            case "gestational":
-              window.location.href = "/diabetes/gestational";
-              break;
-          }
-        });
+      const diabetesTypes = document.querySelector(".diabetes_types");
+      diabetesTypes.addEventListener("change", (e) => {
+        const selected = e.target.value;
+        switch (selected) {
+          case "diabetes":
+            window.location.href = "/diabetes/";
+            break;
+          case "cardio":
+            window.location.href = "/diabetes/cardio";
+            break;
+          case "nephropathy":
+            window.location.href = "/diabetes/nephropathy";
+            break;
+          case "gestational":
+            window.location.href = "/diabetes/gestational";
+            break;
+        }
+      });
 
       // const form = document.querySelector("form");
-      // const pregnancy = document.getElementById("pregnancy");
-      // const glucose = document.getElementById("glucose");
-      // const bp = document.getElementById("bp");
-      // const thickness = document.getElementById("thickness");
-      // const insulin = document.getElementById("insulin");
-      // const bmi = document.getElementById("bmi");
-      // const pedigree = document.getElementById("pedigree");
-      // const age = document.getElementById("age");
-      // const csrf = document.getElementsByName("csrfmiddlewaretoken")[0].value;
-      // form.addEventListener("submit", (e) => {
+      // const positiveResultBlock = document.querySelector(".positive_answer");
+      // const negativeResultBlock = document.querySelector(".negative_answer");
+      // const html = document.querySelector("html");
+      // console.log(positiveResultBlock);
+      // form.addEventListener("submit", handleSubmit);
+      // async function handleSubmit(e) {
       //   e.preventDefault();
-      //   const newform = new FormData();
-      //   newform.append("pregnancy", pregnancy.value);
-      //   newform.append("glucose", glucose.value);
-      //   newform.append("bp", bp.value);
-      //   newform.append("thickness", thickness.value);
-      //   newform.append("insulin", insulin.value);
-      //   newform.append("bmi", bmi.value);
-      //   newform.append("pedigree", pedigree.value);
-      //   newform.append("age", age.value);
-      //   newform.append("csrfmiddlewaretoken", csrf);
-      //   fetch("{% url 'diabetes' %}", {
+      //   const formData = new FormData(form);
+      //   const payload = Object.fromEntries(formData);
+      //   console.log(payload);
+
+      //   const response = await fetch("http://127.0.0.1:8000/diabetes/", {
       //     method: "POST",
-      //     body: newform,
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       "X-CSRFToken": payload.csrfmiddlewaretoken,
+      //     },
+      //     body: JSON.stringify(payload),
+      //     // body: formData,
       //   });
-      // });
+
+      // const response = "{{ hasDiabetes|safe }}";
+
+      // response === 1
+      //   ? (positiveResultBlock.style.display = "block")
+      //   : (negativeResultBlock.style.display = "block");
+
+      // }
     </script>
   </body>
 </html>
